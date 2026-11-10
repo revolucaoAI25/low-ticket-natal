@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --verde: #0b3d2e;
+  --vermelho: #a61c2a;
+  --dourado: #d4af37;
+  --creme: #f9f5e8;
+}
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { background: var(--creme); color: #1e2b25; -webkit-font-smoothing: antialiased; }
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-[1080px] px-5; }
+  .kicker { @apply text-[12px] font-extrabold uppercase tracking-[0.18em] text-vermelho; }
+  .titulo { @apply text-[28px] font-extrabold leading-[1.12] text-verde md:text-[40px]; }
+  .sub { @apply mt-3 text-[16px] leading-relaxed text-cinza md:text-[18px]; }
+  .card { @apply rounded-3xl border border-linha bg-papel shadow-card; }
+  .btn {
+    @apply inline-flex min-h-[58px] w-full items-center justify-center gap-2 rounded-2xl px-6 text-center text-[16px] font-extrabold uppercase tracking-wide transition active:translate-y-[2px] md:w-auto md:min-w-[340px];
+  }
+  .btn-vermelho { @apply btn bg-vermelho text-white shadow-cta hover:bg-vermelho-escuro active:shadow-none; }
+  .btn-verde { @apply btn bg-verde text-white shadow-cta-verde hover:bg-verde-escuro active:shadow-none; }
+  .btn-linha { @apply btn border-2 border-verde bg-transparent text-verde; }
+  .selo { @apply inline-flex items-center gap-1.5 rounded-full bg-dourado-suave px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-verde; }
+}
+
+/* Faixa decorativa de "fita" dourada */
+.fita { background: linear-gradient(90deg, transparent, var(--dourado) 15%, var(--dourado) 85%, transparent); height: 2px; }
+
+/* Neve sutil no topo (CSS puro, sem custo de JS) */
+.neve {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.9) 1.2px, transparent 1.6px), radial-gradient(rgba(255, 255, 255, 0.6) 1px, transparent 1.4px);
+  background-size: 46px 46px, 28px 28px;
+  background-position: 0 0, 13px 19px;
+}
+
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .gira { transform: rotate(45deg); }
+
+@keyframes pulso { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
+.pulso { animation: pulso 2.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .pulso { animation: none; } html { scroll-behavior: auto; } }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
