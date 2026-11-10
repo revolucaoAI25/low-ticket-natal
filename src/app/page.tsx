@@ -6,7 +6,6 @@ import {
   Camera,
   Check,
   Gift,
-  Heart,
   ListChecks,
   Lock,
   Mail,
@@ -45,7 +44,7 @@ function Preco({ v, className = '' }: { v: number; className?: string }) {
 
 function Secao({ id, className = '', children }: { id?: string; className?: string; children: React.ReactNode }) {
   return (
-    <section id={id} className={`py-14 md:py-20 ${className}`}>
+    <section id={id} className={`py-11 md:py-16 ${className}`}>
       <div className="wrap">{children}</div>
     </section>
   );
@@ -72,15 +71,14 @@ export default function Page() {
 
       {/* ---------- HERO ---------- */}
       <header id="topo" className="relative overflow-hidden bg-creme">
-        <div className="wrap grid items-center gap-8 pb-12 pt-6 md:grid-cols-2 md:gap-12 md:pb-20 md:pt-10">
+        <div className="wrap grid items-center gap-8 pb-10 pt-7 md:grid-cols-2 md:gap-12 md:pb-16 md:pt-12">
           <div className="text-center md:text-left">
-            <Image src="/brand/logo-horizontal.png" alt={marca.nome} width={1056} height={192} priority className="mx-auto h-auto w-[210px] md:mx-0 md:w-[260px]" />
-            <p className="kicker mt-6">Renda extra neste Natal</p>
+            <p className="kicker">Renda extra no Natal</p>
             <h1 className="mt-3 text-[34px] font-extrabold leading-[1.06] text-verde md:text-[52px]">
               30 Kits de Natal para <span className="text-vermelho">Montar e Vender</span>
             </h1>
             <p className="mt-4 text-[17px] leading-relaxed text-tinta/80 md:text-[19px]">
-              Aprenda a montar presentes natalinos lindos usando <b className="text-verde">produtos prontos e baratos</b>, mesmo que você nunca tenha feito artesanato.
+              Monte presentes de Natal lindos com <b className="text-verde">produtos prontos e baratos</b> (canecas, chocolates, sabonetes) e venda para amigos, família e colegas. Com moldes para imprimir, lista de materiais e passo a passo, <b className="text-verde">mesmo sem saber artesanato</b>.
             </p>
             <div className="mt-6 md:hidden">
               <Foto src={imagens.heroMockup} alt="Mockup do produto: capa do material e kits de Natal montados" ratio="4 / 3" className="rounded-3xl" priority />
@@ -130,7 +128,7 @@ export default function Page() {
         <Secao className="bg-papel">
           <Cabecalho kicker="Por dentro de cada kit" titulo="Cada kit vem com tudo explicado" sub="Foto do presente pronto, o que comprar, os moldes para imprimir e quanto custa montar. Veja um exemplo:" />
           <div className="card mx-auto mt-8 max-w-[860px] overflow-hidden md:grid md:grid-cols-[1fr_1.1fr]">
-            <Foto src={imagens.fichaExemplo} alt={`Foto do ${fichaExemplo.nome} montado`} ratio="1 / 1" />
+            <Foto src={imagens.fichaExemplo} alt={`Foto do ${fichaExemplo.nome} montado`} ratio="4 / 3" className="md:h-full" />
             <div className="p-5 md:p-7">
               <p className="kicker">{fichaExemplo.kit}</p>
               <h3 className="mt-1 text-[24px] font-extrabold leading-tight text-verde">{fichaExemplo.nome}</h3>
@@ -162,27 +160,26 @@ export default function Page() {
         </Secao>
 
         {/* ---------- COMO FUNCIONA ---------- */}
-        <section className="neve relative bg-verde py-14 md:py-20">
+        <section className="neve relative bg-verde py-11 md:py-16">
           <div className="wrap">
-            <Cabecalho claro kicker="Como funciona" titulo="Você não fabrica nada. Você monta." sub="O segredo está na combinação e na embalagem: produtos simples viram presentes que encantam." />
-            <ol className="mt-10 grid gap-4 md:grid-cols-4">
+            <Cabecalho claro kicker="Como funciona" titulo="Você não fabrica nada. Você monta." />
+            <ol className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
               {[
-                [Gift, 'Escolha', 'Separe os modelos que você mais gostou e que cabem no seu bolso.'],
-                [ShoppingCart, 'Compre', 'Siga a lista de materiais: mercado, papelaria e loja de embalagens.'],
-                [Scissors, 'Monte', 'Imprima os moldes e siga o passo a passo com fotos.'],
-                [Store, 'Venda', 'Ofereça para amigos, família, vizinhos e colegas de trabalho.'],
+                [Gift, 'Escolha', 'os modelos que mais gostou'],
+                [ShoppingCart, 'Compre', 'os produtos da lista'],
+                [Scissors, 'Monte', 'com os moldes e o passo a passo'],
+                [Store, 'Venda', 'para amigos, família e colegas'],
               ].map(([Icon, t, d], i) => {
                 const I = Icon as typeof Gift;
                 return (
-                  <li key={t as string} className="rounded-3xl bg-white/[0.07] p-5 ring-1 ring-white/15">
-                    <div className="flex items-center gap-3">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-dourado text-verde">
-                        <I size={22} strokeWidth={2.4} />
-                      </span>
-                      <span className="text-[13px] font-extrabold uppercase tracking-widest text-dourado">Passo {i + 1}</span>
-                    </div>
-                    <h3 className="mt-4 text-[22px] font-extrabold text-white">{t as string}</h3>
-                    <p className="mt-1 text-[15px] leading-relaxed text-white/80">{d as string}</p>
+                  <li key={t as string} className="rounded-2xl bg-white/[0.07] p-4 ring-1 ring-white/15">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-dourado text-verde">
+                      <I size={20} strokeWidth={2.4} />
+                    </span>
+                    <h3 className="mt-3 text-[18px] font-extrabold text-white">
+                      <span className="text-dourado">{i + 1}.</span> {t as string}
+                    </h3>
+                    <p className="mt-0.5 text-[14px] leading-snug text-white/80">{d as string}</p>
                   </li>
                 );
               })}
@@ -193,24 +190,23 @@ export default function Page() {
         {/* ---------- OBJEÇÕES ---------- */}
         <Secao>
           <Cabecalho kicker="Feito para quem nunca fez" titulo={<>Você não precisa de <span className="text-vermelho">nada disso</span></>} />
-          <div className="mx-auto mt-8 grid max-w-[900px] gap-3 md:grid-cols-2">
+          <ul className="card mx-auto mt-7 max-w-[720px] divide-y divide-linha">
             {[
-              ['Saber fazer artesanato', 'Os kits usam produtos prontos. Você só monta e embala.'],
-              ['Ter criatividade', 'Os 30 modelos já estão criados, com foto de como fica.'],
-              ['Saber o que comprar', 'Cada kit tem a lista de materiais com as quantidades.'],
-              ['Investir muito ou ter estoque', 'Comece com 3 ou 4 modelos e trabalhe por encomenda.'],
+              ['Saber fazer artesanato', 'os kits usam produtos prontos, você só monta e embala.'],
+              ['Ter criatividade', 'os 30 modelos já estão criados, com foto de como fica.'],
+              ['Saber o que comprar', 'cada kit tem a lista de materiais com as quantidades.'],
+              ['Investir muito ou ter estoque', 'comece com 3 ou 4 modelos e venda por encomenda.'],
             ].map(([a, b]) => (
-              <div key={a} className="card flex gap-4 p-5">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-vermelho-claro text-vermelho">
-                  <X size={20} strokeWidth={3} />
+              <li key={a} className="flex gap-3 p-4">
+                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-vermelho-claro text-vermelho">
+                  <X size={15} strokeWidth={3} />
                 </span>
-                <div>
-                  <h3 className="text-[17px] font-extrabold text-verde">{a}</h3>
-                  <p className="mt-1 text-[15px] leading-relaxed text-cinza">{b}</p>
-                </div>
-              </div>
+                <p className="text-[15px] leading-snug text-cinza">
+                  <b className="text-verde">{a}:</b> {b}
+                </p>
+              </li>
             ))}
-          </div>
+          </ul>
         </Secao>
 
         {/* ---------- VITRINE ---------- */}
@@ -224,78 +220,48 @@ export default function Page() {
         {/* ---------- O QUE VOCÊ RECEBE ---------- */}
         <Secao>
           <Cabecalho kicker="O que você recebe" titulo="Tudo pronto para reproduzir, não só ideias" />
-          <div className="mt-8 grid gap-3 md:grid-cols-3">
+          <div className="mt-7 grid grid-cols-2 gap-3 md:grid-cols-3">
             {[
-              [Package, '30 modelos de kits', 'De lembrancinhas simples a caixas de presente mais completas.'],
-              [Printer, 'Moldes para imprimir', 'Tags, cartões, etiquetas, cintas, fundos de saquinho e caixas.'],
-              [ListChecks, 'Lista de materiais', 'O que comprar para cada kit, com quantidades e onde encontrar.'],
-              [Scissors, 'Passo a passo com fotos', 'Da separação dos produtos ao laço e à tag no final.'],
-              [Camera, 'Fotos de referência', 'Como cada presente fica pronto, para você reproduzir igual.'],
-              [Calculator, 'Custos e preços', 'Exemplo de custo de cada kit e como pensar no preço de venda.'],
+              [Package, '30 modelos de kits', 'do mimo simples à caixa completa'],
+              [Printer, 'Moldes para imprimir', 'tags, cartões, cintas e caixas'],
+              [ListChecks, 'Lista de materiais', 'o que comprar e quanto'],
+              [Scissors, 'Passo a passo', 'com fotos de cada etapa'],
+              [Camera, 'Fotos de referência', 'de cada kit pronto'],
+              [Calculator, 'Custos e preços', 'exemplo de cada kit'],
             ].map(([Icon, t, d]) => {
               const I = Icon as typeof Gift;
               return (
-                <div key={t as string} className="card p-5">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-verde-claro text-verde">
-                    <I size={22} strokeWidth={2.2} />
-                  </span>
-                  <h3 className="mt-3 text-[17px] font-extrabold text-verde">{t as string}</h3>
-                  <p className="mt-1 text-[15px] leading-relaxed text-cinza">{d as string}</p>
+                <div key={t as string} className="card p-4">
+                  <I size={22} strokeWidth={2.2} className="text-vermelho" />
+                  <h3 className="mt-2 text-[15px] font-extrabold leading-tight text-verde">{t as string}</h3>
+                  <p className="mt-0.5 text-[13px] leading-snug text-cinza">{d as string}</p>
                 </div>
               );
             })}
           </div>
 
-          <h3 className="mt-12 text-center text-[20px] font-extrabold text-verde">Veja as páginas por dentro</h3>
-          <p className="mt-1 text-center text-[14px] text-cinza">Arraste para o lado</p>
-          <div className="no-scrollbar -mx-5 mt-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2">
+          <h3 className="mt-10 text-center text-[18px] font-extrabold text-verde">Veja as páginas por dentro</h3>
+          <div className="no-scrollbar -mx-5 mt-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2">
             {imagens.porDentro.map((p) => (
-              <figure key={p.legenda} className="w-[72%] max-w-[300px] shrink-0 snap-center">
-                <Foto src={p.img} alt={`Página do material: ${p.legenda}`} ratio="3 / 4" className="rounded-2xl shadow-card" sizes="300px" />
-                <figcaption className="mt-2 text-center text-[13px] font-semibold text-cinza">{p.legenda}</figcaption>
+              <figure key={p.legenda} className="w-[62%] max-w-[260px] shrink-0 snap-center">
+                <Foto src={p.img} alt={`Página do material: ${p.legenda}`} ratio="3 / 4" className="rounded-2xl shadow-card" sizes="260px" />
+                <figcaption className="mt-2 text-center text-[12.5px] font-semibold text-cinza">{p.legenda}</figcaption>
               </figure>
             ))}
           </div>
         </Secao>
 
-        {/* ---------- PARA QUEM É ---------- */}
-        <Secao className="bg-papel">
-          <div className="grid items-center gap-8 md:grid-cols-2">
-            <Foto alt="Foto: mulher montando um kit de Natal na mesa da cozinha" ratio="4 / 3" className="rounded-3xl" />
-            <div>
-              <p className="kicker">Para quem é</p>
-              <h2 className="titulo mt-3">Para quem quer aproveitar o Natal</h2>
-              <ul className="mt-6 space-y-3 text-[16px] text-tinta">
-                {[
-                  'Quem quer fazer uma renda extra de casa neste fim de ano.',
-                  'Quem nunca vendeu nada e quer começar com algo simples.',
-                  'Quem não tem jeito para artesanato, mas gosta de presentear bonito.',
-                  'Quem já vende doces ou artesanato e quer novos produtos para o Natal.',
-                  'Quem quer presentear a família e os amigos gastando pouco.',
-                ].map((t) => (
-                  <li key={t} className="flex gap-3">
-                    <Heart size={20} className="mt-0.5 shrink-0 fill-vermelho text-vermelho" /> {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </Secao>
-
         {/* ---------- BÔNUS ---------- */}
-        <Secao>
-          <Cabecalho kicker="Bônus do Plano Completo" titulo={<>3 bônus para você <span className="text-vermelho">começar a vender</span></>} sub="Além de montar os kits, você recebe o caminho para divulgar e fechar as primeiras encomendas." />
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <Secao className="bg-papel">
+          <Cabecalho kicker="Bônus do Plano Completo" titulo={<>3 bônus para você <span className="text-vermelho">começar a vender</span></>} />
+          <div className="mx-auto mt-7 grid max-w-[980px] gap-3 md:grid-cols-3">
             {bonus.map((b) => (
-              <article key={b.n} className="card overflow-hidden">
-                <Foto src={b.img} alt={`Capa do bônus ${b.n}: ${b.nome}`} ratio="4 / 3" />
-                <div className="p-5">
-                  <p className="selo">
-                    <Gift size={13} /> Bônus {b.n}
-                  </p>
-                  <h3 className="mt-3 text-[18px] font-extrabold leading-snug text-verde">{b.nome}</h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-cinza">{b.desc}</p>
-                  <p className="mt-4 text-[12px] font-extrabold uppercase tracking-wider text-vermelho">Incluído no Plano Completo</p>
+              <article key={b.n} className="card flex gap-4 p-3 md:flex-col md:p-0">
+                <Foto src={b.img} alt={`Capa do bônus ${b.n}`} ratio="3 / 4" className="w-[92px] shrink-0 rounded-xl md:w-full md:rounded-b-none md:rounded-t-3xl" sizes="(max-width: 768px) 92px, 320px" />
+                <div className="py-1 md:p-5 md:pt-2">
+                  <p className="text-[11px] font-extrabold uppercase tracking-wider text-vermelho">Bônus {b.n}</p>
+                  <h3 className="mt-0.5 text-[16px] font-extrabold leading-snug text-verde">{b.nome}</h3>
+                  <p className="mt-1 text-[13.5px] leading-snug text-cinza">{b.desc}</p>
                 </div>
               </article>
             ))}
@@ -303,7 +269,7 @@ export default function Page() {
         </Secao>
 
         {/* ---------- DEPOIMENTOS ---------- */}
-        <Secao className="bg-papel">
+        <Secao>
           <Cabecalho kicker="Depoimentos" titulo="O que estão dizendo" sub="Mensagens de quem já recebeu o material." />
           <div className="no-scrollbar -mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0">
             {imagens.depoimentos.map((d) => (
@@ -402,30 +368,26 @@ export default function Page() {
 
         {/* ---------- O NATAL TEM DATA ---------- */}
         <Secao className="bg-papel">
-          <div className="mx-auto max-w-[760px]">
-            <p className="kicker text-center">Não deixe para depois</p>
-            <h2 className="titulo mt-3 text-center">O Natal tem data</h2>
-            <p className="sub text-center">
-              Faltam <b className="text-vermelho"><Countdown /> dias</b> para fechar as encomendas de Natal (20 de dezembro). Quem começa antes aproveita as confraternizações e o amigo-secreto.
+          <div className="mx-auto max-w-[680px] text-center">
+            <p className="kicker">Não deixe para depois</p>
+            <h2 className="titulo mt-3">O Natal tem data</h2>
+            <p className="sub">
+              Faltam <b className="text-vermelho"><Countdown /> dias</b> para fechar as encomendas de Natal (20/12). Quem começa antes aproveita o amigo-secreto e as confraternizações.
             </p>
-            <ol className="mt-8 space-y-3">
+            <div className="mt-6 grid grid-cols-2 gap-2 text-left md:grid-cols-4">
               {[
-                ['Hoje', 'Escolha seus modelos e monte as primeiras amostras.'],
-                ['Começo de dezembro', 'Divulgue para o amigo-secreto e as confraternizações de fim de ano.'],
-                ['Até 20 de dezembro', 'Feche as encomendas de Natal.'],
-                ['Até 24 de dezembro', 'Monte e entregue os presentes.'],
+                ['Hoje', 'monte as amostras'],
+                ['Início de dez.', 'divulgue'],
+                ['Até 20/12', 'feche os pedidos'],
+                ['Até 24/12', 'entregue'],
               ].map(([q, t], i) => (
-                <li key={q} className="card flex items-center gap-4 p-4">
-                  <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-extrabold ${i === 0 ? 'bg-vermelho text-white' : 'bg-creme text-verde'}`}>
-                    {i === 0 ? <Sparkles size={18} /> : <CalendarDays size={18} />}
-                  </span>
-                  <p className="text-[15px] text-tinta">
-                    <b className="text-verde">{q}:</b> {t}
-                  </p>
-                </li>
+                <div key={q} className={`rounded-2xl p-3 ${i === 0 ? 'bg-vermelho text-white' : 'bg-creme text-verde'}`}>
+                  <p className="text-[13px] font-extrabold">{q}</p>
+                  <p className={`text-[13px] ${i === 0 ? 'text-white/85' : 'text-cinza'}`}>{t}</p>
+                </div>
               ))}
-            </ol>
-            <div className="mt-8 text-center">
+            </div>
+            <div className="mt-7">
               <Cta href="#planos">Quero começar hoje</Cta>
             </div>
           </div>

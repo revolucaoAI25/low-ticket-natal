@@ -9,7 +9,7 @@ export function KitsGrid() {
   const [cat, setCat] = useState<CategoriaId | 'todos'>('todos');
   const [all, setAll] = useState(false);
   const list = cat === 'todos' ? kits : kits.filter((k) => k.cat === cat);
-  const visible = cat === 'todos' && !all ? list.slice(0, 8) : list;
+  const visible = cat === 'todos' && !all ? list.slice(0, 6) : list;
   return (
     <div>
       <div className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 pb-2">
