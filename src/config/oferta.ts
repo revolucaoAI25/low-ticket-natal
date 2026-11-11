@@ -25,7 +25,7 @@ export const precos = {
  * Seção de depoimentos. Ligue só com prints de clientes reais:
  * depoimento inventado é propaganda enganosa (CDC/CONAR) e motivo de bloqueio de anúncio na Meta.
  */
-export const mostrarDepoimentos = false;
+export const mostrarDepoimentos = true;
 
 export const imagens = {
   /** Capa/mockup do produto no topo da página. */
@@ -68,7 +68,7 @@ export const categorias: { id: CategoriaId; nome: string; desc: string }[] = [
 ];
 
 export const kits: Kit[] = [
-  { n: 1, cat: 'economicas', nome: 'Mini Spa Natalino', desc: 'Um mimo delicado de autocuidado, montado com dois produtos fechados e uma embalagem leve.', img: '/fotos/kit-01.webp' },
+  { n: 1, cat: 'economicas', nome: 'Mini Spa Natalino', desc: 'Sabonete e hidratante num saquinho transparente, com cartela de Natal impressa e laço.', img: '/fotos/kit-01.webp' },
   { n: 2, cat: 'economicas', nome: 'Chocolate com Carinho', desc: 'Um presente pequeno com chocolate de verdade, cartão bonito e custo controlado.', img: '/fotos/kit-02.webp' },
   { n: 3, cat: 'economicas', nome: 'Natal Cheiroso', desc: 'Uma dupla perfumada em embalagem compacta, sem nenhuma receita ou fabricação artesanal.', img: '/fotos/kit-03.webp' },
   { n: 4, cat: 'economicas', nome: 'Carinho de Professora', desc: 'Um agradecimento simples e funcional, com papelaria e um doce em destaque.', img: '/fotos/kit-04.webp' },
@@ -111,7 +111,7 @@ export const kits: Kit[] = [
 ];
 
 /** Kits que aparecem com foto na vitrine (um de cada categoria). Os outros aparecem só na lista de nomes. */
-export const kitsDestaque = [31, 32, 36, 38, 26, 27];
+export const kitsDestaque = [31, 32, 36, 38, 26, 1];
 
 /** Ficha de exemplo mostrada no topo (valores ilustrativos). */
 export const fichaExemplo = {
