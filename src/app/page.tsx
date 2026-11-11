@@ -74,41 +74,41 @@ export default function Page() {
       </div>
 
       {/* ---------- HERO ---------- */}
-      <header id="topo" className="hero relative overflow-hidden text-white">
+      <header id="topo" className="hero relative overflow-hidden">
         <div className="wrap relative grid items-center gap-6 pb-12 pt-6 md:grid-cols-[1.05fr_1fr] md:gap-10 md:pb-20 md:pt-14">
           <div className="text-center md:text-left">
-            <p className="faixa mx-auto md:mx-0">Renda extra no Natal</p>
-            <h1 className="mt-4 text-[33px] font-extrabold leading-[1.04] tracking-tight min-[380px]:text-[36px] md:mt-5 md:text-[60px]">
-              40 Kits de Natal para <span className="dourado-texto">Montar e Vender</span>
+            <p className="kicker">Renda extra no Natal</p>
+            <h1 className="mt-3 text-[33px] font-extrabold leading-[1.04] tracking-tight text-verde min-[380px]:text-[36px] md:text-[56px]">
+              40 Kits de Natal para <span className="text-vermelho">Montar e Vender</span>
             </h1>
-            <p className="mx-auto mt-3 max-w-[520px] text-[15.5px] leading-snug text-white/85 md:mx-0 md:mt-4 md:text-[19px] md:leading-relaxed">
-              Monte presentes natalinos lindos com <b className="text-white">produtos prontos e baratos</b> e comece a vender ainda neste Natal, <b className="text-white">mesmo que você nunca tenha feito artesanato</b>.
+            <p className="mx-auto mt-3 max-w-[520px] text-[15.5px] leading-snug text-tinta/80 md:mx-0 md:mt-4 md:text-[19px] md:leading-relaxed">
+              Monte presentes natalinos lindos com <b className="text-verde">produtos prontos e baratos</b> e comece a vender ainda neste Natal, <b className="text-verde">mesmo que você nunca tenha feito artesanato</b>.
             </p>
             <div className="mt-5 md:hidden">
               <HeroCollage capa={imagens.capa} kits={imagens.heroKits} />
             </div>
             <div className="mt-7">
-              <Cta href={ctaTopo} pulse className="ring-2 ring-dourado/80">
+              <Cta href={ctaTopo} pulse>
                 Quero meus 40 kits
               </Cta>
             </div>
-            <ul className="mx-auto mt-6 grid max-w-[460px] gap-2 text-left text-[14.5px] text-white/90 md:mx-0">
+            <ul className="mx-auto mt-6 grid max-w-[460px] gap-2 text-left text-[14.5px] text-tinta md:mx-0">
               {[
                 ['Moldes prontos', 'para imprimir: tags, cartões, cintas e caixas'],
                 ['Lista de compras', 'de cada kit, com quantidades e onde achar'],
                 ['Passo a passo', 'em 6 etapas, do produto ao laço final'],
               ].map(([a, b]) => (
                 <li key={a} className="flex gap-2.5">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-dourado text-verde">
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-verde text-white">
                     <Check size={13} strokeWidth={3.5} />
                   </span>
                   <span>
-                    <b className="text-white">{a}</b> {b}
+                    <b className="text-verde">{a}</b> {b}
                   </span>
                 </li>
               ))}
             </ul>
-            <p className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[12.5px] font-semibold text-white/70 md:justify-start">
+            <p className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[12.5px] font-semibold text-cinza md:justify-start">
               <span className="inline-flex items-center gap-1">
                 <Smartphone size={14} /> Material digital
               </span>
@@ -129,7 +129,7 @@ export default function Page() {
 
       <main>
         {/* ---------- FICHA DE EXEMPLO ---------- */}
-        <Secao className="bg-papel">
+        <Secao className="bg-papel textura">
           <Cabecalho kicker="Por dentro de cada kit" titulo="Cada kit vem com tudo explicado" sub="Foto do presente pronto, o que comprar, os moldes para imprimir e quanto custa montar. Veja um exemplo:" />
           <div className="card mx-auto mt-8 max-w-[860px] overflow-hidden md:grid md:grid-cols-[1fr_1.1fr]">
             <Foto src={imagens.fichaExemplo} alt={`${fichaExemplo.nome} montado`} ratio="4 / 5" className="md:!aspect-auto md:h-full md:min-h-[460px]" />
@@ -282,7 +282,7 @@ export default function Page() {
         </Secao>
 
         {/* ---------- BÔNUS ---------- */}
-        <Secao className="bg-papel">
+        <Secao className="bg-papel textura">
           <Cabecalho kicker="Bônus do Plano Completo" titulo={<>3 bônus para você <span className="text-vermelho">começar a vender</span></>} />
           <div className="mx-auto mt-7 grid max-w-[980px] gap-3 md:grid-cols-3">
             {bonus.map((b) => (
