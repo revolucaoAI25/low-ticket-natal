@@ -114,8 +114,8 @@ export const kits: Kit[] = [
   { n: 31, cat: 'economicas', nome: 'Cone de Docinhos Natalinos', desc: 'Mix de docinhos num cone natalino impresso: pequeno, cheio e lindo.', img: '/fotos/kit-31.webp' },
   { n: 32, cat: 'economicas', nome: 'Pirâmide Surpresa', desc: 'Caixinha em pirâmide feita com o molde, com poucos itens bem escolhidos.', img: '/fotos/kit-32.webp' },
   { n: 33, cat: 'economicas', nome: 'Almofadinha de Chocolate', desc: 'Uma caixa almofada compacta com mix pequeno, mas mais interessante do que um único doce.', img: '/fotos/kit-33.webp' },
-  { n: 34, cat: 'economicas', nome: 'Cubinho da Sorte', desc: 'Cubinho fofo e bem recheado, usando doces compactos que aproveitam melhor o volume interno.', img: '/fotos/kit-34.webp' },
-  { n: 35, cat: 'economicas', nome: 'Mini Sacolinha Criativa', desc: 'Uma mini sacolinha pequena, mas com composição mais interessante: item comestível + item…', img: '/fotos/kit-35.webp' },
+  { n: 34, cat: 'doces', nome: 'Cesta Natalina Premium', desc: 'Vinho, chocotone, geleia, castanhas, salgados e chocolates numa cesta farta e elegante.', img: '/fotos/kit-34.webp' },
+  { n: 35, cat: 'criativos', nome: 'Luz e Carinho: Velas Natalinas', desc: 'Três velas decoradas e castiçal numa caixa natalina com fita xadrez e raminho.', img: '/fotos/kit-35.webp' },
   { n: 36, cat: 'canecas', nome: 'Ritual do Café Especial', desc: 'Caixa de café completa, com caneca, café e biscoitos de marcas conhecidas.', img: '/fotos/kit-36.webp' },
   { n: 37, cat: 'doces', nome: 'Tábua de Petiscos de Natal', desc: 'Um kit gourmet mais elaborado, com composição elegante e cara de presente premium.', img: '/fotos/kit-37.webp' },
   { n: 38, cat: 'beleza', nome: 'Ritual de Banho Premium', desc: 'Caixa de banho completa, com toalha, hidratante e sabonete, finalizada com laço.', img: '/fotos/kit-38.webp' },
@@ -123,12 +123,12 @@ export const kits: Kit[] = [
   { n: 40, cat: 'criativos', nome: 'Noite de Jogos em Família', desc: 'Kit com proposta divertida e maior quantidade de componentes, pensado para parecer completo…', img: '/fotos/kit-40.webp' },
 ];
 
-/** Kits que aparecem com foto na vitrine (um de cada categoria). Os outros aparecem só na lista de nomes. */
-export const kitsDestaque = [31, 32, 36, 38, 26, 27];
+/** Kits que aparecem com foto na vitrine. Os outros entram no bloco "E mais X kits". */
+export const kitsDestaque = [31, 34, 36, 35, 32, 38, 26, 27];
 
 /** Ficha de exemplo mostrada no topo (valores ilustrativos). */
 export const fichaExemplo = {
-  kit: 'Projeto 06',
+  kit: 'Projeto 11',
   nome: 'Caneca de Chocolate Quente',
   materiais: ['1 caneca de cerâmica de 250 a 350 ml', '1 sachê de chocolate quente ou cappuccino', '2 bombons embalados', '1 saco de celofane 25 × 35 cm', 'Papel de seda, fita e tag (molde M02)'],
   custo: 'R$ 29',

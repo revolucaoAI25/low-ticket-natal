@@ -36,6 +36,23 @@ export function ExitPopup({ href, preco, precoDe, bonus, capa }: { href: string;
     return true;
   }, []);
 
+  // Links internos (#planos etc.) rolam a página sem criar entrada no histórico.
+  // Sem isso, o navegador dispara "popstate" ao clicar e o pop-up abria como se a pessoa estivesse saindo.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = (e.target as Element | null)?.closest?.('a[href^="#"]');
+      const id = a?.getAttribute('href')?.slice(1);
+      const alvo = id ? document.getElementById(id) : null;
+      if (!alvo) return;
+      e.preventDefault();
+      const reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      alvo.scrollIntoView({ behavior: reduz ? 'auto' : 'smooth', block: 'start' });
+    };
+    document.addEventListener('click', onClick);
+    return () => document.removeEventListener('click', onClick);
+  }, []);
+
   useEffect(() => {
     if (jaViu()) return;
     const t0 = Date.now();

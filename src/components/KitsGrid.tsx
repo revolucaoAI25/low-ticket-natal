@@ -2,17 +2,17 @@ import Image from 'next/image';
 import { categorias, kits, kitsDestaque } from '@/config/oferta';
 import { Foto } from './Foto';
 
-/** Vitrine: 6 kits com foto + chamada "e mais X kits" com miniaturas. */
+/** Vitrine: 8 kits com foto + chamada "e mais X kits" com miniaturas. */
 export function KitsGrid() {
   const destaque = kitsDestaque.map((n) => kits.find((k) => k.n === n)!).filter(Boolean);
   const outros = kits.filter((k) => !kitsDestaque.includes(k.n));
   const mini = [11, 17, 8, 40, 29, 4].map((n) => kits.find((k) => k.n === n)!).filter(Boolean);
   return (
     <div>
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
         {destaque.map((k) => (
           <article key={k.n} className="card overflow-hidden">
-            <Foto src={k.img} alt={`Foto: ${k.nome} montado`} ratio="4 / 5" sizes="(max-width: 768px) 50vw, 340px" />
+            <Foto src={k.img} alt={`Foto: ${k.nome} montado`} ratio="4 / 5" sizes="(max-width: 768px) 50vw, 260px" />
             <div className="p-3">
               <p className="text-[11px] font-extrabold uppercase tracking-wider text-vermelho">{categorias.find((c) => c.id === k.cat)?.nome}</p>
               <h3 className="mt-0.5 text-[15px] font-extrabold leading-tight text-verde">{k.nome}</h3>
