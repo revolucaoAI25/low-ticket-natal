@@ -211,7 +211,7 @@ export default function Page() {
 
         {/* ---------- VITRINE ---------- */}
         <Secao id="kits" className="bg-papel">
-          <Cabecalho kicker="Os 30 kits" titulo="Escolha seus favoritos e comece por eles" sub="Lembrancinhas econômicas, canecas, kits de spa, chocolates, presentes para professores e ideias diferentes." />
+          <Cabecalho kicker="Alguns dos 30 kits" titulo="Escolha seus favoritos e comece por eles" sub="Um gostinho do que tem no material: são 30 modelos em 6 categorias." />
           <div className="mt-8">
             <KitsGrid />
           </div>

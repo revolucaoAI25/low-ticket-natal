@@ -95,6 +95,9 @@ export const kits: Kit[] = [
   { n: 30, cat: 'criativos', nome: 'Luz de Natal', desc: 'Vela LED, enfeite e cartão em embalagem personalizada.' },
 ];
 
+/** Kits que aparecem com foto na vitrine (um de cada categoria). Os outros aparecem só na lista de nomes. */
+export const kitsDestaque = [5, 7, 11, 17, 22, 27];
+
 /** Ficha de exemplo mostrada no topo (valores ilustrativos). */
 export const fichaExemplo = {
   kit: 'Kit 06',
