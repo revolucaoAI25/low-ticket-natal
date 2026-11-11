@@ -6,7 +6,7 @@ import { Foto } from './Foto';
 export function KitsGrid() {
   const destaque = kitsDestaque.map((n) => kits.find((k) => k.n === n)!).filter(Boolean);
   const outros = kits.filter((k) => !kitsDestaque.includes(k.n));
-  const mini = [11, 17, 8, 40, 29, 27].map((n) => kits.find((k) => k.n === n)!).filter(Boolean);
+  const mini = [11, 17, 8, 40, 29, 4].map((n) => kits.find((k) => k.n === n)!).filter(Boolean);
   return (
     <div>
       <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">

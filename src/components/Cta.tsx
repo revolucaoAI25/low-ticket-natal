@@ -26,6 +26,11 @@ export function Cta({ href, children, variant = 'vermelho', value, plano, classN
         if (isAnchor) return;
         e.preventDefault();
         track('InitiateCheckout', { value, currency: 'BRL', content_name: plano });
+        try {
+          sessionStorage.setItem('kpv:checkout', '1');
+        } catch {
+          /* ignore */
+        }
         window.location.href = checkoutUrl(href);
       }}
     >

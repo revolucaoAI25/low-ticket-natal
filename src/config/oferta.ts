@@ -14,11 +14,15 @@ export const marca = {
 export const checkout = {
   essencial: process.env.NEXT_PUBLIC_CHECKOUT_ESSENCIAL ?? '',
   completo: process.env.NEXT_PUBLIC_CHECKOUT_COMPLETO ?? '',
+  /** Pop-up de saída: checkout do Plano Completo pelo preço do Essencial. */
+  saida: process.env.NEXT_PUBLIC_CHECKOUT_SAIDA ?? '',
 };
 
 export const precos = {
   essencial: 19.9,
   completo: 29.9,
+  /** Preço do Plano Completo no pop-up de saída. */
+  saida: 19.9,
 };
 
 /**
@@ -37,13 +41,22 @@ export const imagens = {
   fichaExemplo: '/fotos/kit-06.webp',
   /** Páginas do material para o carrossel "Por dentro". */
   porDentro: [
-    { img: '', legenda: 'A ficha do kit, com foto e lista de materiais' },
-    { img: '', legenda: 'O passo a passo de montagem, com fotos' },
-    { img: '', legenda: 'Os moldes: tags, cartões e cintas para imprimir' },
-    { img: '', legenda: 'Custo dos materiais e sugestão de preço' },
+    { img: '/fotos/paginas/pagina-1.webp', legenda: 'A ficha de cada kit: foto, ideia, lista de compras e moldes' },
+    { img: '/fotos/paginas/pagina-2.webp', legenda: 'Passo a passo em 6 etapas e simulação de custos' },
+    { img: '/fotos/paginas/pagina-3.webp', legenda: 'Moldes prontos: tags para imprimir e recortar' },
+    { img: '/fotos/paginas/pagina-4.webp', legenda: 'Molde da caixa pirâmide de Natal' },
+    { img: '/fotos/paginas/pagina-5.webp', legenda: 'Molde do cone natalino' },
+    { img: '/fotos/paginas/pagina-6.webp', legenda: 'Índice dos 40 kits por categoria' },
   ],
   /** Prints de depoimentos (WhatsApp). */
-  depoimentos: [1, 2, 3, 4, 5, 6].map((i) => ({ img: `/fotos/depoimentos/d${i}.webp`, legenda: `Depoimento ${i}` })),
+  depoimentos: [
+    { img: '/fotos/depoimentos/d1.webp', w: 619, h: 1100 },
+    { img: '/fotos/depoimentos/d2.webp', w: 619, h: 1100 },
+    { img: '/fotos/depoimentos/d3.webp', w: 619, h: 1100 },
+    { img: '/fotos/depoimentos/d4.webp', w: 501, h: 1024 },
+    { img: '/fotos/depoimentos/d5.webp', w: 498, h: 1024 },
+    { img: '/fotos/depoimentos/d6.webp', w: 505, h: 1024 },
+  ],
 };
 
 /* ---------------- os 40 kits ---------------- */
@@ -69,9 +82,9 @@ export const categorias: { id: CategoriaId; nome: string; desc: string }[] = [
 
 export const kits: Kit[] = [
   { n: 1, cat: 'economicas', nome: 'Mini Spa Natalino', desc: 'Sabonete e hidratante num saquinho transparente, com cartela de Natal impressa e laço.', img: '/fotos/kit-01.webp' },
-  { n: 2, cat: 'economicas', nome: 'Chocolate com Carinho', desc: 'Um presente pequeno com chocolate de verdade, cartão bonito e custo controlado.', img: '/fotos/kit-02.webp' },
+  { n: 2, cat: 'economicas', nome: 'Chocolate com Carinho', desc: 'Chocolates num saquinho transparente com cartela de Natal impressa e laço vermelho.', img: '/fotos/kit-02.webp' },
   { n: 3, cat: 'economicas', nome: 'Natal Cheiroso', desc: 'Uma dupla perfumada em embalagem compacta, sem nenhuma receita ou fabricação artesanal.', img: '/fotos/kit-03.webp' },
-  { n: 4, cat: 'economicas', nome: 'Carinho de Professora', desc: 'Um agradecimento simples e funcional, com papelaria e um doce em destaque.', img: '/fotos/kit-04.webp' },
+  { n: 4, cat: 'economicas', nome: 'Carinho de Professora', desc: 'Post-it, caneta e bombom num saquinho com cartela de Natal: o agrado perfeito para professoras.', img: '/fotos/kit-04.webp' },
   { n: 5, cat: 'economicas', nome: 'Kit Aconchego', desc: 'Meias macias e um chocolate em um pacote pequeno que remete a conforto.', img: '/fotos/kit-05.webp' },
   { n: 6, cat: 'canecas', nome: 'Caneca de Chocolate Quente', desc: 'Caneca, sachê de chocolate quente e bombons, embalada com laço.', img: '/fotos/kit-06.webp' },
   { n: 7, cat: 'canecas', nome: 'Caneca Natal Doce', desc: 'O clássico presente de caneca cheia de chocolates, com montagem vistosa e poucos elementos.', img: '/fotos/kit-07.webp' },
@@ -111,7 +124,7 @@ export const kits: Kit[] = [
 ];
 
 /** Kits que aparecem com foto na vitrine (um de cada categoria). Os outros aparecem só na lista de nomes. */
-export const kitsDestaque = [31, 32, 36, 38, 26, 1];
+export const kitsDestaque = [31, 32, 36, 38, 26, 27];
 
 /** Ficha de exemplo mostrada no topo (valores ilustrativos). */
 export const fichaExemplo = {

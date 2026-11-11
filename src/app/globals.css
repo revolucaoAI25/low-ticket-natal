@@ -147,3 +147,25 @@ details[open] .gira { transform: rotate(45deg); }
   background-clip: text;
   color: transparent;
 }
+
+/* Carrossel automático dos depoimentos (loop contínuo) */
+.carrossel {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.carrossel-trilho {
+  display: flex;
+  width: max-content;
+  gap: 14px;
+  padding: 6px 0 16px;
+  animation: carrossel 55s linear infinite;
+}
+@media (hover: hover) { .carrossel:hover .carrossel-trilho { animation-play-state: paused; } }
+@keyframes carrossel { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 7px)); } }
+@media (prefers-reduced-motion: reduce) {
+  .carrossel-trilho { animation: none; overflow-x: auto; width: auto; }
+}
+
+/* Entrada do pop-up de saída */
+@keyframes saida-in { from { transform: translateY(24px) scale(0.98); opacity: 0; } to { transform: none; opacity: 1; } }
+.saida-pop { animation: saida-in 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.1) both; }

@@ -22,6 +22,8 @@ import {
   X,
 } from 'lucide-react';
 import { Cta } from '@/components/Cta';
+import { Depoimentos } from '@/components/Depoimentos';
+import { ExitPopup } from '@/components/ExitPopup';
 import { Foto } from '@/components/Foto';
 import { HeroCollage } from '@/components/HeroCollage';
 import { KitsGrid } from '@/components/KitsGrid';
@@ -74,16 +76,16 @@ export default function Page() {
 
       {/* ---------- HERO ---------- */}
       <header id="topo" className="hero relative overflow-hidden">
-        <div className="wrap relative grid items-center gap-6 pb-12 pt-6 md:grid-cols-[1.05fr_1fr] md:gap-10 md:pb-20 md:pt-14">
-          <div className="text-center md:text-left">
+        <div className="wrap relative grid items-center gap-6 pb-12 pt-6 lg:grid-cols-[1.05fr_1fr] lg:gap-10 md:pb-16 lg:pb-20 md:pt-10 lg:pt-14">
+          <div className="mx-auto max-w-[640px] text-center lg:mx-0 lg:max-w-none lg:text-left">
             <p className="kicker">Renda extra no Natal</p>
-            <h1 className="mt-3 text-[33px] font-extrabold leading-[1.04] tracking-tight text-verde min-[380px]:text-[36px] md:text-[56px]">
+            <h1 className="mt-3 text-[33px] font-extrabold leading-[1.04] tracking-tight text-verde min-[380px]:text-[36px] md:text-[52px] xl:text-[60px]">
               40 Kits de Natal para <span className="text-vermelho">Montar e Vender</span>
             </h1>
-            <p className="mx-auto mt-3 max-w-[520px] text-[15.5px] leading-snug text-tinta/80 md:mx-0 md:mt-4 md:text-[19px] md:leading-relaxed">
+            <p className="mx-auto mt-3 max-w-[520px] text-[15.5px] leading-snug text-tinta/80 lg:mx-0 md:mt-4 md:text-[19px] md:leading-relaxed">
               Monte presentes natalinos lindos com <b className="text-verde">produtos prontos e baratos</b> e comece a vender ainda neste Natal, <b className="text-verde">mesmo que você nunca tenha feito artesanato</b>.
             </p>
-            <div className="mt-5 md:hidden">
+            <div className="mt-5 lg:hidden">
               <HeroCollage capa={imagens.capa} kits={imagens.heroKits} />
             </div>
             <div className="mt-7">
@@ -91,7 +93,7 @@ export default function Page() {
                 Quero meus 40 kits
               </Cta>
             </div>
-            <ul className="mx-auto mt-6 grid max-w-[460px] gap-2 text-left text-[14.5px] text-tinta md:mx-0">
+            <ul className="mx-auto mt-6 grid max-w-[460px] gap-2 text-left text-[14.5px] text-tinta lg:mx-0">
               {[
                 ['Moldes prontos', 'para imprimir: tags, cartões, cintas e caixas'],
                 ['Lista de compras', 'de cada kit, com quantidades e onde achar'],
@@ -107,7 +109,7 @@ export default function Page() {
                 </li>
               ))}
             </ul>
-            <p className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[12.5px] font-semibold text-cinza md:justify-start">
+            <p className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[12.5px] font-semibold text-cinza lg:justify-start">
               <span className="inline-flex items-center gap-1">
                 <Smartphone size={14} /> Material digital
               </span>
@@ -119,7 +121,7 @@ export default function Page() {
               </span>
             </p>
           </div>
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <HeroCollage capa={imagens.capa} kits={imagens.heroKits} />
           </div>
         </div>
@@ -175,14 +177,14 @@ export default function Page() {
               ].map(([Icon, t, d], i) => {
                 const I = Icon as typeof Gift;
                 return (
-                  <li key={t as string} className="rounded-2xl bg-white/[0.07] p-4 ring-1 ring-white/15">
+                  <li key={t as string} className="rounded-2xl bg-[#15533F] p-4 shadow-[0_10px_24px_-14px_rgba(0,0,0,.6)] ring-1 ring-dourado/35">
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-dourado text-verde">
                       <I size={20} strokeWidth={2.4} />
                     </span>
                     <h3 className="mt-3 text-[18px] font-extrabold text-white">
                       <span className="text-dourado">{i + 1}.</span> {t as string}
                     </h3>
-                    <p className="mt-0.5 text-[14px] leading-snug text-white/80">{d as string}</p>
+                    <p className="mt-0.5 text-[14px] font-medium leading-snug text-white/95">{d as string}</p>
                   </li>
                 );
               })}
@@ -246,8 +248,8 @@ export default function Page() {
           <h3 className="mt-10 text-center text-[18px] font-extrabold text-verde">Veja as páginas por dentro</h3>
           <div className="no-scrollbar -mx-5 mt-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2">
             {imagens.porDentro.map((p) => (
-              <figure key={p.legenda} className="w-[62%] max-w-[260px] shrink-0 snap-center">
-                <Foto src={p.img} alt={`Página do material: ${p.legenda}`} ratio="3 / 4" className="rounded-2xl shadow-card" sizes="260px" />
+              <figure key={p.legenda} className="w-[62%] max-w-[250px] shrink-0 snap-center">
+                <Foto src={p.img} alt={`Página do material: ${p.legenda}`} ratio="760 / 1075" className="rounded-xl shadow-card ring-1 ring-linha" sizes="250px" />
                 <figcaption className="mt-2 text-center text-[12.5px] font-semibold text-cinza">{p.legenda}</figcaption>
               </figure>
             ))}
@@ -279,12 +281,12 @@ export default function Page() {
               ].map(([Icon, t, d]) => {
                 const I = Icon as typeof Gift;
                 return (
-                  <div key={t as string} className="rounded-3xl bg-white/[0.08] p-5 ring-1 ring-white/20">
+                  <div key={t as string} className="rounded-3xl bg-[#8E1724] p-5 shadow-[0_10px_24px_-14px_rgba(0,0,0,.6)] ring-1 ring-dourado/35">
                     <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-dourado text-vermelho">
                       <I size={22} strokeWidth={2.4} />
                     </span>
                     <h3 className="mt-3 text-[18px] font-extrabold">{t as string}</h3>
-                    <p className="mt-1 text-[14.5px] leading-snug text-white/85">{d as string}</p>
+                    <p className="mt-1 text-[14.5px] font-medium leading-snug text-white/95">{d as string}</p>
                   </div>
                 );
               })}
@@ -316,14 +318,12 @@ export default function Page() {
 
         {/* ---------- DEPOIMENTOS ---------- */}
         {mostrarDepoimentos && (
-          <Secao>
-            <Cabecalho kicker="Depoimentos" titulo="O que estão dizendo" sub="Mensagens de quem já montou os primeiros kits." />
-            <div className="no-scrollbar -mx-5 mt-8 flex snap-x snap-mandatory items-start gap-3 overflow-x-auto px-5 pb-3 md:mx-0 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-0">
-              {imagens.depoimentos.map((d) => (
-                <Image key={d.img} src={d.img} alt={d.legenda} width={620} height={1100} sizes="(max-width: 768px) 70vw, 340px" className="h-auto w-[68%] max-w-[300px] shrink-0 snap-center rounded-2xl shadow-card md:w-full md:max-w-none" />
-              ))}
+          <section className="overflow-hidden py-11 md:py-16">
+            <div className="wrap">
+              <Cabecalho kicker="Depoimentos" titulo="O que estão dizendo" sub="Mensagens de quem já montou os primeiros kits." />
             </div>
-          </Secao>
+            <Depoimentos itens={imagens.depoimentos} />
+          </section>
         )}
 
         {/* ---------- PLANOS ---------- */}
@@ -373,7 +373,7 @@ export default function Page() {
                       <Check size={18} className="mt-0.5 shrink-0 text-verde" strokeWidth={3} /> {t}
                     </li>
                   ))}
-                  <li className="flex gap-2 text-cinza/80">
+                  <li className="flex gap-2 text-cinza">
                     <X size={18} className="mt-0.5 shrink-0" strokeWidth={3} /> Sem os 3 bônus de vendas
                   </li>
                 </ul>
@@ -468,6 +468,7 @@ export default function Page() {
       </footer>
 
       <StickyBar preco={brl(precos.essencial)} />
+      <ExitPopup href={checkout.saida} preco={precos.saida} precoDe={precos.completo} bonus={bonus.map((b) => b.nome)} capa={imagens.capa} />
     </>
   );
 }

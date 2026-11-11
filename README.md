@@ -8,7 +8,9 @@ Página de vendas (Next.js 15 + Tailwind) da marca **Kits pra Vender**.
 |---|---|
 | Textos, kits, bônus, FAQ, preços | `src/config/oferta.ts` |
 | Fotos (mockup, kits, páginas, bônus, depoimentos) | coloque em `public/fotos/` e preencha o campo `img` em `src/config/oferta.ts` |
-| Links de checkout, Pixel, Utmify | variáveis da Vercel (veja `.env.example`) |
+| Links de checkout (Essencial, Completo e o do pop-up de saída), Pixel, Utmify | variáveis da Vercel (veja `.env.example`) |
+| Depoimentos (ligar/desligar) | `mostrarDepoimentos` em `src/config/oferta.ts`; imagens em `public/fotos/depoimentos/` |
+| Kits da vitrine | `kitsDestaque` em `src/config/oferta.ts` |
 | Cores e fonte | `tailwind.config.ts` e `src/app/fonts.ts` |
 | Logo e ícone | `public/brand/` e `src/app/icon.png` |
 
@@ -29,3 +31,8 @@ npm run dev
 
 Importe o repositório, cadastre as variáveis do `.env.example` e faça o deploy.
 O Pixel fica no `<head>` (PageView dispara logo no carregamento) e os botões de compra levam as UTMs para o checkout e disparam `InitiateCheckout`.
+
+## Pop-up de saída
+
+Aparece uma vez por visita (computador: mouse saindo pelo topo; celular: botão de voltar depois de rolar a página) e oferece o Plano Completo por R$ 19,90.
+Crie na Kiwify um checkout do Plano Completo por R$ 19,90 e cole o link em `NEXT_PUBLIC_CHECKOUT_SAIDA`. Sem esse link, o botão do pop-up leva até os planos.
