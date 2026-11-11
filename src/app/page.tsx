@@ -2,8 +2,7 @@ import Image from 'next/image';
 import {
   BadgeCheck,
   Calculator,
-  CalendarDays,
-  Camera,
+    Camera,
   Check,
   Gift,
   ListChecks,
@@ -22,7 +21,7 @@ import {
   Wallet,
   X,
 } from 'lucide-react';
-import { Countdown } from '@/components/Countdown';
+import { Calculadora } from '@/components/Calculadora';
 import { Cta } from '@/components/Cta';
 import { Foto } from '@/components/Foto';
 import { HeroCollage } from '@/components/HeroCollage';
@@ -54,7 +53,11 @@ function Secao({ id, className = '', children }: { id?: string; className?: stri
 function Cabecalho({ kicker, titulo, sub, claro = false }: { kicker: string; titulo: React.ReactNode; sub?: string; claro?: boolean }) {
   return (
     <div className="mx-auto max-w-[680px] text-center">
-      <p className={`kicker ${claro ? '!text-dourado' : ''}`}>{kicker}</p>
+      <p className={`kicker inline-flex items-center gap-2 ${claro ? '!text-dourado' : ''}`}>
+        <span className="h-px w-6 bg-current opacity-50" />
+        {kicker}
+        <span className="h-px w-6 bg-current opacity-50" />
+      </p>
       <h2 className={`titulo mt-3 ${claro ? '!text-white' : ''}`}>{titulo}</h2>
       {sub && <p className={`sub ${claro ? '!text-white/80' : ''}`}>{sub}</p>}
     </div>
@@ -67,61 +70,61 @@ export default function Page() {
     <>
       {/* faixa de topo */}
       <div className="bg-vermelho px-4 py-2 text-center text-[11px] font-extrabold uppercase tracking-[0.14em] text-white md:text-[12px]">
-        Oferta de Natal · Acesso imediato · 7 dias de garantia
+        🎄 Oferta especial de Natal
       </div>
 
       {/* ---------- HERO ---------- */}
-      <header id="topo" className="relative overflow-hidden bg-creme">
-        <div className="wrap grid items-center gap-8 pb-10 pt-7 md:grid-cols-2 md:gap-12 md:pb-16 md:pt-12">
+      <header id="topo" className="hero relative overflow-hidden text-white">
+        <div className="wrap relative grid items-center gap-6 pb-12 pt-6 md:grid-cols-[1.05fr_1fr] md:gap-10 md:pb-20 md:pt-14">
           <div className="text-center md:text-left">
-            <p className="kicker">Renda extra no Natal</p>
-            <h1 className="mt-3 text-[34px] font-extrabold leading-[1.06] text-verde md:text-[52px]">
-              40 Kits de Natal para <span className="text-vermelho">Montar e Vender</span>
+            <p className="faixa mx-auto md:mx-0">Renda extra no Natal</p>
+            <h1 className="mt-4 text-[33px] font-extrabold leading-[1.04] tracking-tight min-[380px]:text-[36px] md:mt-5 md:text-[60px]">
+              40 Kits de Natal para <span className="dourado-texto">Montar e Vender</span>
             </h1>
-            <p className="mt-4 text-[17px] leading-relaxed text-tinta/80 md:text-[19px]">
-              Monte presentes natalinos lindos com <b className="text-verde">produtos prontos e baratos</b> e comece a vender ainda neste Natal, <b className="text-verde">mesmo que você nunca tenha feito artesanato</b>.
+            <p className="mx-auto mt-3 max-w-[520px] text-[15.5px] leading-snug text-white/85 md:mx-0 md:mt-4 md:text-[19px] md:leading-relaxed">
+              Monte presentes natalinos lindos com <b className="text-white">produtos prontos e baratos</b> e comece a vender ainda neste Natal, <b className="text-white">mesmo que você nunca tenha feito artesanato</b>.
             </p>
-            <div className="mt-6 md:hidden">
-              <HeroCollage fotos={imagens.hero} />
+            <div className="mt-5 md:hidden">
+              <HeroCollage capa={imagens.capa} kits={imagens.heroKits} />
             </div>
-            <ul className="mx-auto mt-6 max-w-[420px] space-y-2.5 text-left text-[15px] font-semibold text-tinta md:mx-0">
+            <div className="mt-7">
+              <Cta href={ctaTopo} pulse className="ring-2 ring-dourado/80">
+                Quero meus 40 kits
+              </Cta>
+            </div>
+            <ul className="mx-auto mt-6 grid max-w-[460px] gap-2 text-left text-[14.5px] text-white/90 md:mx-0">
               {[
-                ['Moldes prontos', 'para imprimir: tags, cartões e cintas'],
-                ['Lista de materiais', 'de cada kit, com as quantidades'],
-                ['Passo a passo com fotos', 'do começo ao laço final'],
+                ['Moldes prontos', 'para imprimir: tags, cartões, cintas e caixas'],
+                ['Lista de compras', 'de cada kit, com quantidades e onde achar'],
+                ['Passo a passo', 'em 6 etapas, do produto ao laço final'],
               ].map(([a, b]) => (
                 <li key={a} className="flex gap-2.5">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-verde text-white">
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-dourado text-verde">
                     <Check size={13} strokeWidth={3.5} />
                   </span>
                   <span>
-                    <b className="text-verde">{a}</b> {b}
+                    <b className="text-white">{a}</b> {b}
                   </span>
                 </li>
               ))}
             </ul>
-            <div className="mt-7">
-              <Cta href={ctaTopo} pulse>
-                Quero meus 40 kits
-              </Cta>
-              <p className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[12.5px] font-semibold text-cinza md:justify-start">
-                <span className="inline-flex items-center gap-1">
-                  <Smartphone size={14} /> Material digital
-                </span>
-                <span className="inline-flex items-center gap-1">
-                  <Mail size={14} /> Chega no e-mail na hora
-                </span>
-                <span className="inline-flex items-center gap-1">
-                  <ShieldCheck size={14} /> 7 dias de garantia
-                </span>
-              </p>
-            </div>
+            <p className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[12.5px] font-semibold text-white/70 md:justify-start">
+              <span className="inline-flex items-center gap-1">
+                <Smartphone size={14} /> Material digital
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <Mail size={14} /> Chega no e-mail na hora
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <ShieldCheck size={14} /> 7 dias de garantia
+              </span>
+            </p>
           </div>
           <div className="hidden md:block">
-            <HeroCollage fotos={imagens.hero} />
+            <HeroCollage capa={imagens.capa} kits={imagens.heroKits} />
           </div>
         </div>
-        <div className="fita" />
+        <div className="fita relative" />
       </header>
 
       <main>
@@ -252,6 +255,32 @@ export default function Page() {
           </div>
         </Secao>
 
+        {/* ---------- FATURAMENTO ---------- */}
+        <Secao>
+          <Cabecalho
+            kicker="Faça as contas"
+            titulo={<>Quanto sobra no seu <span className="text-vermelho">bolso</span>?</>}
+            sub="Cada kit do material vem com o custo e uma faixa de preço para vender. Brinque com os números:"
+          />
+          <div className="mt-8">
+            <Calculadora />
+          </div>
+          <div className="mx-auto mt-6 grid max-w-[720px] gap-3 md:grid-cols-2">
+            <div className="flex gap-3 rounded-2xl bg-verde-claro p-4">
+              <Wallet size={22} className="mt-0.5 shrink-0 text-verde" />
+              <p className="text-[14.5px] leading-snug text-tinta">
+                <b className="text-verde">O material se paga rápido:</b> pelos valores de referência, 2 canecas vendidas já cobrem o Plano Completo.
+              </p>
+            </div>
+            <div className="flex gap-3 rounded-2xl bg-vermelho-claro p-4">
+              <Sparkles size={22} className="mt-0.5 shrink-0 text-vermelho" />
+              <p className="text-[14.5px] leading-snug text-tinta">
+                <b className="text-vermelho">Quem começa antes vende mais:</b> amigo-secreto, confraternizações e lembrancinhas de fim de ano se resolvem no começo de dezembro.
+              </p>
+            </div>
+          </div>
+        </Secao>
+
         {/* ---------- BÔNUS ---------- */}
         <Secao className="bg-papel">
           <Cabecalho kicker="Bônus do Plano Completo" titulo={<>3 bônus para você <span className="text-vermelho">começar a vender</span></>} />
@@ -365,33 +394,6 @@ export default function Page() {
               <p className="mt-2 text-[15.5px] leading-relaxed text-cinza">
                 Conheça o material com calma. Se não for para você, peça o reembolso dentro de 7 dias e o valor volta inteiro, sem perguntas.
               </p>
-            </div>
-          </div>
-        </Secao>
-
-        {/* ---------- O NATAL TEM DATA ---------- */}
-        <Secao className="bg-papel">
-          <div className="mx-auto max-w-[680px] text-center">
-            <p className="kicker">Não deixe para depois</p>
-            <h2 className="titulo mt-3">O Natal tem data</h2>
-            <p className="sub">
-              Faltam <b className="text-vermelho"><Countdown /> dias</b> para fechar as encomendas de Natal (20/12). Quem começa antes aproveita o amigo-secreto e as confraternizações.
-            </p>
-            <div className="mt-6 grid grid-cols-2 gap-2 text-left md:grid-cols-4">
-              {[
-                ['Hoje', 'monte as amostras'],
-                ['Início de dez.', 'divulgue'],
-                ['Até 20/12', 'feche os pedidos'],
-                ['Até 24/12', 'entregue'],
-              ].map(([q, t], i) => (
-                <div key={q} className={`rounded-2xl p-3 ${i === 0 ? 'bg-vermelho text-white' : 'bg-creme text-verde'}`}>
-                  <p className="text-[13px] font-extrabold">{q}</p>
-                  <p className={`text-[13px] ${i === 0 ? 'text-white/85' : 'text-cinza'}`}>{t}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-7">
-              <Cta href="#planos">Quero começar hoje</Cta>
             </div>
           </div>
         </Secao>

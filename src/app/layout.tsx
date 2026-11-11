@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: marca.produto,
     description: 'Monte presentes lindos com produtos prontos e faça uma renda extra neste Natal.',
-    images: ['/brand/logo-empilhado.png'],
+    images: ['/fotos/capa-og.jpg'],
     locale: 'pt_BR',
     type: 'website',
   },

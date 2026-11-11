@@ -29,8 +29,10 @@ export const mostrarDepoimentos = false;
 
 export const imagens = {
   /** Capa/mockup do produto no topo da página. */
-  /** Fotos dos kits na composição do topo (1ª é a de destaque). */
-  hero: ['/fotos/kit-36.webp', '/fotos/kit-31.webp', '/fotos/kit-26.webp'],
+  /** Capa do material (topo da página). */
+  capa: '/fotos/capa.webp',
+  /** Dois kits que aparecem atrás da capa. */
+  heroKits: ['/fotos/kit-31.webp', '/fotos/kit-36.webp'] as [string, string],
   /** Foto do kit da ficha de exemplo. */
   fichaExemplo: '/fotos/kit-06.webp',
   /** Páginas do material para o carrossel "Por dentro". */
