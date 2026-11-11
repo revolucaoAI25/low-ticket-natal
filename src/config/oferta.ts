@@ -105,13 +105,13 @@ export const kits: Kit[] = [
   { n: 35, cat: 'economicas', nome: 'Mini Sacolinha Criativa', desc: 'Uma mini sacolinha pequena, mas com composição mais interessante: item comestível + item…', img: '/fotos/kit-35.webp' },
   { n: 36, cat: 'canecas', nome: 'Ritual do Café Especial', desc: 'Caixa de café completa, com caneca, café e biscoitos de marcas conhecidas.', img: '/fotos/kit-36.webp' },
   { n: 37, cat: 'doces', nome: 'Tábua de Petiscos de Natal', desc: 'Um kit gourmet mais elaborado, com composição elegante e cara de presente premium.', img: '/fotos/kit-37.webp' },
-  { n: 38, cat: 'beleza', nome: 'Ritual de Banho Premium', desc: 'Versão mais sofisticada do spa natalino, com vários itens coordenados e marcas reconhecidas.', img: '/fotos/kit-38.webp' },
+  { n: 38, cat: 'beleza', nome: 'Ritual de Banho Premium', desc: 'Caixa de banho completa, com toalha, hidratante e sabonete, finalizada com laço.', img: '/fotos/kit-38.webp' },
   { n: 39, cat: 'personalizados', nome: 'Escritório Elegante', desc: 'Um kit de papelaria mais sofisticado e útil, com sensação de presente executivo.', img: '/fotos/kit-39.webp' },
   { n: 40, cat: 'criativos', nome: 'Noite de Jogos em Família', desc: 'Kit com proposta divertida e maior quantidade de componentes, pensado para parecer completo…', img: '/fotos/kit-40.webp' },
 ];
 
 /** Kits que aparecem com foto na vitrine (um de cada categoria). Os outros aparecem só na lista de nomes. */
-export const kitsDestaque = [31, 32, 36, 26, 27, 10];
+export const kitsDestaque = [31, 32, 36, 38, 26, 27];
 
 /** Ficha de exemplo mostrada no topo (valores ilustrativos). */
 export const fichaExemplo = {

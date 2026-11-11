@@ -21,7 +21,6 @@ import {
   Wallet,
   X,
 } from 'lucide-react';
-import { Calculadora } from '@/components/Calculadora';
 import { Cta } from '@/components/Cta';
 import { Foto } from '@/components/Foto';
 import { HeroCollage } from '@/components/HeroCollage';
@@ -255,31 +254,48 @@ export default function Page() {
           </div>
         </Secao>
 
-        {/* ---------- FATURAMENTO ---------- */}
-        <Secao>
-          <Cabecalho
-            kicker="Faça as contas"
-            titulo={<>Quanto sobra no seu <span className="text-vermelho">bolso</span>?</>}
-            sub="Cada kit do material vem com o custo e uma faixa de preço para vender. Brinque com os números:"
-          />
-          <div className="mt-8">
-            <Calculadora />
-          </div>
-          <div className="mx-auto mt-6 grid max-w-[720px] gap-3 md:grid-cols-2">
-            <div className="flex gap-3 rounded-2xl bg-verde-claro p-4">
-              <Wallet size={22} className="mt-0.5 shrink-0 text-verde" />
-              <p className="text-[14.5px] leading-snug text-tinta">
-                <b className="text-verde">O material se paga rápido:</b> pelos valores de referência, 2 canecas vendidas já cobrem o Plano Completo.
+        {/* ---------- RENDA EXTRA ---------- */}
+        <section className="relative overflow-hidden bg-vermelho py-12 text-white md:py-16">
+          <div className="neve absolute inset-0 opacity-40" aria-hidden />
+          <div className="wrap relative">
+            <div className="mx-auto max-w-[700px] text-center">
+              <p className="kicker inline-flex items-center gap-2 !text-dourado">
+                <span className="h-px w-6 bg-current opacity-60" />
+                Renda extra de verdade
+                <span className="h-px w-6 bg-current opacity-60" />
+              </p>
+              <h2 className="mt-3 text-[30px] font-extrabold leading-[1.1] md:text-[42px]">
+                Feche o ano com <span className="text-dourado">dinheiro no bolso</span>
+              </h2>
+              <p className="mt-3 text-[16px] leading-relaxed text-white/85 md:text-[18px]">
+                No Natal todo mundo precisa de presente. Você monta, oferece para quem já conhece e transforma o fim de ano em renda extra.
               </p>
             </div>
-            <div className="flex gap-3 rounded-2xl bg-vermelho-claro p-4">
-              <Sparkles size={22} className="mt-0.5 shrink-0 text-vermelho" />
-              <p className="text-[14.5px] leading-snug text-tinta">
-                <b className="text-vermelho">Quem começa antes vende mais:</b> amigo-secreto, confraternizações e lembrancinhas de fim de ano se resolvem no começo de dezembro.
-              </p>
+            <div className="mx-auto mt-8 grid max-w-[900px] gap-3 md:grid-cols-3">
+              {[
+                [Gift, 'Todo mundo compra', 'Amigo-secreto, confraternização, professora, família: dezembro é o mês dos presentes.'],
+                [Store, 'Venda perto de você', 'Família, vizinhos, colegas de trabalho, grupos do bairro e do WhatsApp.'],
+                [Sparkles, 'Comece 2027 no azul', 'Pague as contas de fim de ano e entre em janeiro com dinheiro guardado.'],
+              ].map(([Icon, t, d]) => {
+                const I = Icon as typeof Gift;
+                return (
+                  <div key={t as string} className="rounded-3xl bg-white/[0.08] p-5 ring-1 ring-white/20">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-dourado text-vermelho">
+                      <I size={22} strokeWidth={2.4} />
+                    </span>
+                    <h3 className="mt-3 text-[18px] font-extrabold">{t as string}</h3>
+                    <p className="mt-1 text-[14.5px] leading-snug text-white/85">{d as string}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-8 text-center">
+              <Cta href="#planos" variant="verde" className="ring-2 ring-dourado/70">
+                Quero fazer renda extra neste Natal
+              </Cta>
             </div>
           </div>
-        </Secao>
+        </section>
 
         {/* ---------- BÔNUS ---------- */}
         <Secao className="bg-papel textura">
