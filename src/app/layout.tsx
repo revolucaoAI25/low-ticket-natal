@@ -8,6 +8,7 @@ import './globals.css';
 const site = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 const pixelId = (process.env.NEXT_PUBLIC_META_PIXEL_ID || '').replace(/\D/g, '');
 const utmify = process.env.NEXT_PUBLIC_UTMIFY_UTMS !== '0';
+const utmifyPixel = (process.env.NEXT_PUBLIC_UTMIFY_PIXEL_ID || '').replace(/[^a-zA-Z0-9]/g, '');
 
 export const metadata: Metadata = {
   metadataBase: new URL(site),
@@ -48,6 +49,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Tracking />
         {utmify ? (
           <Script id="utmify-utms" src="https://cdn.utmify.com.br/scripts/utms/latest.js" strategy="afterInteractive" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" />
+        ) : null}
+        {utmifyPixel ? (
+          <Script id="utmify-pixel" strategy="afterInteractive">
+            {`window.pixelId="${utmifyPixel}";var a=document.createElement("script");a.setAttribute("async","");a.setAttribute("defer","");a.setAttribute("src","https://cdn.utmify.com.br/scripts/pixel/pixel.js");document.head.appendChild(a);`}
+          </Script>
         ) : null}
       </body>
     </html>

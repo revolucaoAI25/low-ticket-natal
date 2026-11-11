@@ -1,4 +1,4 @@
-# 30 Kits de Natal para Montar e Vender · LP
+# 40 Kits de Natal para Montar e Vender · LP
 
 Página de vendas (Next.js 15 + Tailwind) da marca **Kits pra Vender**.
 
@@ -36,3 +36,19 @@ O Pixel fica no `<head>` (PageView dispara logo no carregamento) e os botões de
 
 Aparece uma vez por visita (computador: mouse saindo pelo topo; celular: botão de voltar depois de rolar a página) e oferece o Plano Completo por R$ 19,90.
 Crie na Kiwify um checkout do Plano Completo por R$ 19,90 e cole o link em `NEXT_PUBLIC_CHECKOUT_SAIDA`. Sem esse link, o botão do pop-up leva até os planos.
+
+## Pixel, Utmify e entrega automática
+
+**Rastreamento (igual ao ID Pet)**
+- Pixel da Meta direto na página (`NEXT_PUBLIC_META_PIXEL_ID`): PageView ao abrir e InitiateCheckout no clique do botão.
+- Script de UTMs da Utmify: as UTMs vão junto no link do checkout.
+- A **compra** chega na Meta pela Utmify (integração Kiwify → Utmify). Não coloque Pixel na Kiwify, senão a compra conta duas vezes.
+
+**Entrega (`/api/webhooks/kiwify`)**
+- Na Kiwify, cada produto (Essencial, Completo, Catálogo, Planilha, Artesanatos) recebe um webhook para `https://SEU-DOMINIO/api/webhooks/kiwify`, com os eventos Compra aprovada, Reembolso e Chargeback. Coloque os tokens em `KIWIFY_WEBHOOK_TOKEN`, separados por vírgula.
+- O nome do produto na Kiwify define o que é enviado: precisa conter "Completo", "Essencial", "Catálogo", "Planilha" ou "Artesanato". Também dá para usar o ID do produto em `kiwifyIds`, no arquivo `src/config/entrega.ts`.
+- Plano Completo: um e-mail com o material, os 3 bônus e o complementar. Plano Essencial: um e-mail só com o material. Cada order bump vai num e-mail separado.
+- Os links dos arquivos ficam em `src/config/entrega.ts`.
+- Os pedidos de order bump também são enviados para a Utmify pela API (`UTMIFY_API_TOKEN`).
+- Página de obrigado: `/obrigado`. Configure como página de agradecimento na Kiwify.
+- Os logs aparecem na Vercel com o prefixo `[kiwify]`.

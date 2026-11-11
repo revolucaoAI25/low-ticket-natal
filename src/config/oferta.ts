@@ -7,7 +7,7 @@
 export const marca = {
   nome: 'Kits pra Vender',
   produto: '40 Kits de Natal para Montar e Vender',
-  suporte: 'suporte@kitspravender.com.br',
+  suporte: process.env.NEXT_PUBLIC_SUPORTE_EMAIL || 'suporte@kitspravender.com.br',
 };
 
 /** Links do checkout (Kiwify). Também podem vir das variáveis da Vercel. */
