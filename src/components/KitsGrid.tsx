@@ -1,10 +1,12 @@
-import { Plus } from 'lucide-react';
+import Image from 'next/image';
 import { categorias, kits, kitsDestaque } from '@/config/oferta';
 import { Foto } from './Foto';
 
-/** Vitrine: 6 kits com foto (um por categoria) + a lista completa dos 40, que abre no toque. */
+/** Vitrine: 6 kits com foto + chamada "e mais X kits" com miniaturas. */
 export function KitsGrid() {
   const destaque = kitsDestaque.map((n) => kits.find((k) => k.n === n)!).filter(Boolean);
+  const outros = kits.filter((k) => !kitsDestaque.includes(k.n));
+  const mini = [11, 17, 8, 40, 29, 5].map((n) => kits.find((k) => k.n === n)!).filter(Boolean);
   return (
     <div>
       <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
@@ -20,28 +22,23 @@ export function KitsGrid() {
         ))}
       </div>
 
-      <details className="card group mx-auto mt-5 max-w-[760px]">
-        <summary className="flex cursor-pointer items-center justify-between gap-3 p-5 text-[16px] font-extrabold text-verde">
-          Ver a lista dos 40 kits
-          <Plus size={20} className="gira shrink-0 text-vermelho transition-transform" />
-        </summary>
-        <div className="grid gap-5 px-5 pb-6 md:grid-cols-2">
-          {categorias.map((c) => (
-            <div key={c.id}>
-              <p className="text-[12px] font-extrabold uppercase tracking-wider text-vermelho">{c.nome}</p>
-              <ul className="mt-2 space-y-1 text-[14.5px] text-tinta">
-                {kits
-                  .filter((k) => k.cat === c.id)
-                  .map((k) => (
-                    <li key={k.n}>
-                      <span className="font-bold text-verde">{String(k.n).padStart(2, '0')}.</span> {k.nome}
-                    </li>
-                  ))}
-              </ul>
+      <div className="card mx-auto mt-5 flex max-w-[760px] flex-col items-center gap-4 p-5 text-center md:flex-row md:text-left">
+        <div className="flex shrink-0 -space-x-4">
+          {mini.map((k, i) => (
+            <div key={k.n} className="relative h-14 w-14 overflow-hidden rounded-full border-[3px] border-papel shadow-card" style={{ zIndex: 10 - i }}>
+              <Image src={k.img!} alt="" fill sizes="56px" className="object-cover" />
             </div>
           ))}
         </div>
-      </details>
+        <div>
+          <p className="text-[18px] font-extrabold leading-tight text-verde">
+            E mais <span className="text-vermelho">{outros.length} kits</span> no material
+          </p>
+          <p className="mt-1 text-[14px] leading-snug text-cinza">
+            Das lembrancinhas de cerca de R$ 20 às caixas que passam de R$ 100: tem kit para todo bolso e toda ocasião.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
