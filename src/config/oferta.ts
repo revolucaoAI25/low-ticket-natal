@@ -6,7 +6,7 @@
 
 export const marca = {
   nome: 'Kits pra Vender',
-  produto: '30 Kits de Natal para Montar e Vender',
+  produto: '40 Kits de Natal para Montar e Vender',
   suporte: 'suporte@kitspravender.com.br',
 };
 
@@ -21,11 +21,18 @@ export const precos = {
   completo: 29.9,
 };
 
+/**
+ * Seção de depoimentos. Ligue só com prints de clientes reais:
+ * depoimento inventado é propaganda enganosa (CDC/CONAR) e motivo de bloqueio de anúncio na Meta.
+ */
+export const mostrarDepoimentos = false;
+
 export const imagens = {
   /** Capa/mockup do produto no topo da página. */
-  heroMockup: '',
-  /** Foto do Kit 01 na ficha de exemplo. */
-  fichaExemplo: '',
+  /** Fotos dos kits na composição do topo (1ª é a de destaque). */
+  hero: ['/fotos/kit-36.webp', '/fotos/kit-31.webp', '/fotos/kit-26.webp'],
+  /** Foto do kit da ficha de exemplo. */
+  fichaExemplo: '/fotos/kit-06.webp',
   /** Páginas do material para o carrossel "Por dentro". */
   porDentro: [
     { img: '', legenda: 'A ficha do kit, com foto e lista de materiais' },
@@ -33,15 +40,11 @@ export const imagens = {
     { img: '', legenda: 'Os moldes: tags, cartões e cintas para imprimir' },
     { img: '', legenda: 'Custo dos materiais e sugestão de preço' },
   ],
-  /** Prints de depoimentos reais (WhatsApp/Instagram). */
-  depoimentos: [
-    { img: '', legenda: 'Print de depoimento 1' },
-    { img: '', legenda: 'Print de depoimento 2' },
-    { img: '', legenda: 'Print de depoimento 3' },
-  ],
+  /** Prints de depoimentos (WhatsApp). */
+  depoimentos: [1, 2, 3, 4, 5, 6].map((i) => ({ img: `/fotos/depoimentos/d${i}.webp`, legenda: `Depoimento ${i}` })),
 };
 
-/* ---------------- os 30 kits ---------------- */
+/* ---------------- os 40 kits ---------------- */
 
 export interface Kit {
   n: number;
@@ -54,7 +57,7 @@ export interface Kit {
 export type CategoriaId = 'economicas' | 'canecas' | 'beleza' | 'doces' | 'personalizados' | 'criativos';
 
 export const categorias: { id: CategoriaId; nome: string; desc: string }[] = [
-  { id: 'economicas', nome: 'Lembrancinhas econômicas', desc: 'Pra quem quer começar gastando pouco' },
+  { id: 'economicas', nome: 'Lembrancinhas', desc: 'Pra quem quer começar gastando pouco' },
   { id: 'canecas', nome: 'Canecas e bebidas', desc: 'Os queridinhos do amigo-secreto' },
   { id: 'beleza', nome: 'Beleza e autocuidado', desc: 'Kits de spa e cuidados' },
   { id: 'doces', nome: 'Doces e chocolates', desc: 'Tudo com produtos prontos, sem receita' },
@@ -63,49 +66,59 @@ export const categorias: { id: CategoriaId; nome: string; desc: string }[] = [
 ];
 
 export const kits: Kit[] = [
-  { n: 1, cat: 'economicas', nome: 'Mini Spa Natalino', desc: 'Sabonete e mini hidratante em saquinho com fundo impresso e laço.' },
-  { n: 2, cat: 'economicas', nome: 'Chocolate com Carinho', desc: 'Chocolate e bombons presos a um cartão natalino.' },
-  { n: 3, cat: 'economicas', nome: 'Natal Cheiroso', desc: 'Sabonete e sachê perfumado em caixinha decorada.' },
-  { n: 4, cat: 'economicas', nome: 'Lembrancinha para Professores', desc: 'Caneta, bloquinho e chocolate com mensagem de agradecimento.' },
-  { n: 5, cat: 'economicas', nome: 'Kit Aconchego', desc: 'Par de meias e chocolate com cinta natalina.' },
-  { n: 6, cat: 'canecas', nome: 'Caneca de Chocolate Quente', desc: 'Caneca, chocolate quente em sachê e bombons, embalada com laço.' },
-  { n: 7, cat: 'canecas', nome: 'Caneca Natal Doce', desc: 'Caneca cheia de chocolates e doces, com tag natalina.' },
-  { n: 8, cat: 'canecas', nome: 'Café da Manhã Especial', desc: 'Caneca, café e biscoitos em caixa kraft decorada.' },
-  { n: 9, cat: 'canecas', nome: 'Kit Chá e Carinho', desc: 'Xícara com sachês de chá e um mimo, em caixa personalizada.' },
-  { n: 10, cat: 'canecas', nome: 'Copo Surpresa', desc: 'Copo com tampa cheio de doces, com laço e etiqueta.' },
-  { n: 11, cat: 'beleza', nome: 'Spa de Natal', desc: 'Hidratante, sabonete e esponja em caixa com papel de seda.' },
-  { n: 12, cat: 'beleza', nome: 'Mãos de Princesa', desc: 'Creme para mãos, lixa e esmalte com cartão natalino.' },
-  { n: 13, cat: 'beleza', nome: 'Banho Relaxante', desc: 'Sabonete, esponja e vela aromática em caixa decorativa.' },
-  { n: 14, cat: 'beleza', nome: 'Natal Perfumado', desc: 'Mini perfume e hidratante em caixinha com divisórias.' },
-  { n: 15, cat: 'beleza', nome: 'Pequenos Cuidados', desc: 'Protetor labial, creme para mãos e chocolate.' },
-  { n: 16, cat: 'doces', nome: 'Cinema de Natal', desc: 'Pipoca de micro-ondas, chocolate e balas em caixa temática.' },
-  { n: 17, cat: 'doces', nome: 'Natal Chocolatudo', desc: 'Bombons e barras em caixa com divisórias.' },
-  { n: 18, cat: 'doces', nome: 'Panetone Encantado', desc: 'Mini panetone e chocolates em embalagem com visor.' },
-  { n: 19, cat: 'doces', nome: 'Café com Doçura', desc: 'Sachês de café, biscoitos e chocolates em caixa kraft.' },
-  { n: 20, cat: 'doces', nome: 'Doce Amigo-Secreto', desc: 'Chocolates variados e cartão em sacolinha personalizada.' },
-  { n: 21, cat: 'personalizados', nome: 'Kit Escritório Natalino', desc: 'Bloquinho, caneta e marcador em embalagem envelope.' },
-  { n: 22, cat: 'personalizados', nome: 'Kit Professora Especial', desc: 'Papelaria e doces com cartão de agradecimento.' },
-  { n: 23, cat: 'personalizados', nome: 'Kit Relaxamento', desc: 'Chá, máscara para dormir e chocolate em caixa decorada.' },
-  { n: 24, cat: 'personalizados', nome: 'Kit Leitura Aconchegante', desc: 'Marcador de página, chá e chocolates.' },
-  { n: 25, cat: 'personalizados', nome: 'Kit Lembrança de Natal', desc: 'Mimo pronto com cartões para diferentes destinatários.' },
-  { n: 26, cat: 'criativos', nome: 'Kit Natal Pet', desc: 'Brinquedo, petisco e acessório em caixa temática pet.' },
-  { n: 27, cat: 'criativos', nome: 'Jardim de Natal', desc: 'Mini suculenta em vasinho com embalagem kraft e cartão.' },
-  { n: 28, cat: 'criativos', nome: 'Criatividade Infantil', desc: 'Giz de cera, livrinho de atividades e adesivos.' },
-  { n: 29, cat: 'criativos', nome: 'Mesa Posta Natalina', desc: 'Guardanapos, argolas e enfeites em caixa decorativa.' },
-  { n: 30, cat: 'criativos', nome: 'Luz de Natal', desc: 'Vela LED, enfeite e cartão em embalagem personalizada.' },
+  { n: 1, cat: 'economicas', nome: 'Mini Spa Natalino', desc: 'Um mimo delicado de autocuidado, montado com dois produtos fechados e uma embalagem leve.', img: '/fotos/kit-01.webp' },
+  { n: 2, cat: 'economicas', nome: 'Chocolate com Carinho', desc: 'Um presente pequeno com chocolate de verdade, cartão bonito e custo controlado.', img: '/fotos/kit-02.webp' },
+  { n: 3, cat: 'economicas', nome: 'Natal Cheiroso', desc: 'Uma dupla perfumada em embalagem compacta, sem nenhuma receita ou fabricação artesanal.', img: '/fotos/kit-03.webp' },
+  { n: 4, cat: 'economicas', nome: 'Carinho de Professora', desc: 'Um agradecimento simples e funcional, com papelaria e um doce em destaque.', img: '/fotos/kit-04.webp' },
+  { n: 5, cat: 'economicas', nome: 'Kit Aconchego', desc: 'Meias macias e um chocolate em um pacote pequeno que remete a conforto.', img: '/fotos/kit-05.webp' },
+  { n: 6, cat: 'canecas', nome: 'Caneca de Chocolate Quente', desc: 'Caneca, sachê de chocolate quente e bombons, embalada com laço.', img: '/fotos/kit-06.webp' },
+  { n: 7, cat: 'canecas', nome: 'Caneca Natal Doce', desc: 'O clássico presente de caneca cheia de chocolates, com montagem vistosa e poucos elementos.', img: '/fotos/kit-07.webp' },
+  { n: 8, cat: 'canecas', nome: 'Café da Manhã Especial', desc: 'Uma caixa com clima de manhã aconchegante, feita somente com bebidas e biscoitos embalados.', img: '/fotos/kit-08.webp' },
+  { n: 9, cat: 'canecas', nome: 'Chá e Carinho', desc: 'Um presente calmo, com chá, acompanhamento e composição leve.', img: '/fotos/kit-09.webp' },
+  { n: 10, cat: 'canecas', nome: 'Copo Surpresa', desc: 'Copo com tampa cheio de chocolates, fechado com laço e tag.', img: '/fotos/kit-10.webp' },
+  { n: 11, cat: 'beleza', nome: 'Spa de Natal', desc: 'Uma caixa de autocuidado maior, com aspecto de presente completo.', img: '/fotos/kit-11.webp' },
+  { n: 12, cat: 'beleza', nome: 'Mãos de Princesa', desc: 'Um trio compacto para as mãos com aparência de presente de boutique.', img: '/fotos/kit-12.webp' },
+  { n: 13, cat: 'beleza', nome: 'Banho Relaxante', desc: 'Sabonete, esponja e vela industrializada para criar um conjunto de presente acolhedor.', img: '/fotos/kit-13.webp' },
+  { n: 14, cat: 'beleza', nome: 'Natal Perfumado', desc: 'Fragrância e hidratante mini em um conjunto elegante e pequeno.', img: '/fotos/kit-14.webp' },
+  { n: 15, cat: 'beleza', nome: 'Pequenos Cuidados', desc: 'Um presente compacto com itens de bolso, sem caixa volumosa.', img: '/fotos/kit-15.webp' },
+  { n: 16, cat: 'doces', nome: 'Cinema de Natal', desc: 'Um combo pronto para uma sessão de cinema em casa, com diversão e guloseimas.', img: '/fotos/kit-16.webp' },
+  { n: 17, cat: 'doces', nome: 'Natal Chocolatudo', desc: 'Uma caixa assortida de chocolates com apresentação de confeitaria, sem fazer doces em casa.', img: '/fotos/kit-17.webp' },
+  { n: 18, cat: 'doces', nome: 'Panetone Encantado', desc: 'O mini panetone de supermercado recebe um acabamento bonito com cinta, tag e laço.', img: '/fotos/kit-18.webp' },
+  { n: 19, cat: 'doces', nome: 'Café com Doçura', desc: 'Uma lembrança leve, sem caneca, que combina café, biscoito e chocolate.', img: '/fotos/kit-19.webp' },
+  { n: 20, cat: 'doces', nome: 'Doce Amigo-Secreto', desc: 'Um pacote de doces com mensagem afetiva e embalagem realmente simples.', img: '/fotos/kit-20.webp' },
+  { n: 21, cat: 'personalizados', nome: 'Escritório Natalino', desc: 'Bloquinho, caneta e marcador para quem trabalha ou estuda.', img: '/fotos/kit-21.webp' },
+  { n: 22, cat: 'personalizados', nome: 'Professora Especial', desc: 'Um agrado de papelaria mais completo, com doce e mensagem personalizada.', img: '/fotos/kit-22.webp' },
+  { n: 23, cat: 'personalizados', nome: 'Kit Relaxamento', desc: 'Uma combinação de descanso: máscara para dormir, chá e chocolate.', img: '/fotos/kit-23.webp' },
+  { n: 24, cat: 'personalizados', nome: 'Leitura Aconchegante', desc: 'Chá, chocolates e um marcador de página impresso em uma embalagem plana.', img: '/fotos/kit-24.webp' },
+  { n: 25, cat: 'personalizados', nome: 'Lembrança de Natal', desc: 'Enfeite pronto para árvore e um mimo de autocuidado com cartão personalizável.', img: '/fotos/kit-25.webp' },
+  { n: 26, cat: 'criativos', nome: 'Natal Pet', desc: 'Caixa festiva para o pet, com brinquedo, petisco e acessório.', img: '/fotos/kit-26.webp' },
+  { n: 27, cat: 'criativos', nome: 'Jardim de Natal', desc: 'Suculenta em vasinho com papel kraft, fita e cartão de Natal.', img: '/fotos/kit-27.webp' },
+  { n: 28, cat: 'criativos', nome: 'Criatividade Infantil', desc: 'Uma lembrança para desenhar e brincar, com itens prontos e um mini material impresso.', img: '/fotos/kit-28.webp' },
+  { n: 29, cat: 'criativos', nome: 'Mesa Posta Natalina', desc: 'Uma lembrança temática para decorar a mesa do Natal com itens prontos.', img: '/fotos/kit-29.webp' },
+  { n: 30, cat: 'criativos', nome: 'Luz de Natal', desc: 'Um pequeno presente com vela LED e enfeite, leve e com charme de mesa.', img: '/fotos/kit-30.webp' },
+  { n: 31, cat: 'economicas', nome: 'Cone de Docinhos Natalinos', desc: 'Mix de docinhos num cone natalino impresso: pequeno, cheio e lindo.', img: '/fotos/kit-31.webp' },
+  { n: 32, cat: 'economicas', nome: 'Pirâmide Surpresa', desc: 'Caixinha em pirâmide feita com o molde, com poucos itens bem escolhidos.', img: '/fotos/kit-32.webp' },
+  { n: 33, cat: 'economicas', nome: 'Almofadinha de Chocolate', desc: 'Uma caixa almofada compacta com mix pequeno, mas mais interessante do que um único doce.', img: '/fotos/kit-33.webp' },
+  { n: 34, cat: 'economicas', nome: 'Cubinho da Sorte', desc: 'Cubinho fofo e bem recheado, usando doces compactos que aproveitam melhor o volume interno.', img: '/fotos/kit-34.webp' },
+  { n: 35, cat: 'economicas', nome: 'Mini Sacolinha Criativa', desc: 'Uma mini sacolinha pequena, mas com composição mais interessante: item comestível + item…', img: '/fotos/kit-35.webp' },
+  { n: 36, cat: 'canecas', nome: 'Ritual do Café Especial', desc: 'Caixa de café completa, com caneca, café e biscoitos de marcas conhecidas.', img: '/fotos/kit-36.webp' },
+  { n: 37, cat: 'doces', nome: 'Tábua de Petiscos de Natal', desc: 'Um kit gourmet mais elaborado, com composição elegante e cara de presente premium.', img: '/fotos/kit-37.webp' },
+  { n: 38, cat: 'beleza', nome: 'Ritual de Banho Premium', desc: 'Versão mais sofisticada do spa natalino, com vários itens coordenados e marcas reconhecidas.', img: '/fotos/kit-38.webp' },
+  { n: 39, cat: 'personalizados', nome: 'Escritório Elegante', desc: 'Um kit de papelaria mais sofisticado e útil, com sensação de presente executivo.', img: '/fotos/kit-39.webp' },
+  { n: 40, cat: 'criativos', nome: 'Noite de Jogos em Família', desc: 'Kit com proposta divertida e maior quantidade de componentes, pensado para parecer completo…', img: '/fotos/kit-40.webp' },
 ];
 
 /** Kits que aparecem com foto na vitrine (um de cada categoria). Os outros aparecem só na lista de nomes. */
-export const kitsDestaque = [5, 7, 11, 17, 22, 27];
+export const kitsDestaque = [31, 32, 36, 26, 27, 10];
 
 /** Ficha de exemplo mostrada no topo (valores ilustrativos). */
 export const fichaExemplo = {
-  kit: 'Kit 06',
+  kit: 'Projeto 06',
   nome: 'Caneca de Chocolate Quente',
-  materiais: ['1 caneca de 300 ml', '3 bombons embalados', '1 sachê de chocolate quente', '1 saquinho transparente', '1 fita de cetim', '1 tag natalina (molde incluso)'],
-  custo: 'R$ 18',
-  venda: 'R$ 39,90',
-  tempo: '10 min',
+  materiais: ['1 caneca de cerâmica de 250 a 350 ml', '1 sachê de chocolate quente ou cappuccino', '2 bombons embalados', '1 saco de celofane 25 × 35 cm', 'Papel de seda, fita e tag (molde M02)'],
+  custo: 'R$ 29',
+  venda: 'R$ 45 a 62',
+  tempo: '12 a 18 min',
 };
 
 /* ---------------- bônus ---------------- */
@@ -113,28 +126,28 @@ export const fichaExemplo = {
 export const bonus = [
   {
     n: 1,
+    img: '/fotos/bonus-1.webp',
     nome: 'WhatsApp Vendedor: 30 Mensagens Prontas',
     desc: 'Mensagens para divulgar os kits, responder sobre preço, fechar encomendas e combinar a entrega. É só copiar e colar.',
-    img: '',
   },
   {
     n: 2,
+    img: '/fotos/bonus-2.webp',
     nome: 'Primeira Encomenda: Guia de 7 Passos',
     desc: 'Do primeiro modelo escolhido à primeira encomenda entregue, sem precisar montar estoque antes.',
-    img: '',
   },
   {
     n: 3,
+    img: '/fotos/bonus-3.webp',
     nome: 'Calendário de Vendas Natalinas',
     desc: 'Quando divulgar, quando fechar os pedidos e quando montar, para dar tempo de entregar tudo antes do Natal.',
-    img: '',
   },
 ];
 
 /* ---------------- planos ---------------- */
 
 export const planoEssencial = [
-  '30 modelos de kits natalinos',
+  '40 modelos de kits natalinos',
   'Moldes e artes para imprimir',
   'Lista de materiais de cada kit',
   'Passo a passo com fotos',
@@ -156,8 +169,8 @@ export const faq: { q: string; a: string }[] = [
     a: 'É 100% digital. Você recebe o acesso no e-mail logo após o pagamento e pode abrir no celular, no computador ou imprimir.',
   },
   {
-    q: 'Preciso montar os 30 kits?',
-    a: 'Não. Escolha 3 ou 4 modelos que você mais gostar e que caibam no seu orçamento, monte as primeiras amostras e comece a divulgar. Dá para trabalhar por encomenda, sem estoque.',
+    q: 'Preciso montar os 40 kits?',
+    a: 'Não. Escolha 2 ou 3 modelos que você mais gostar e que caibam no seu orçamento, monte as primeiras amostras e comece a divulgar. Dá para trabalhar por encomenda, sem estoque.',
   },
   {
     q: 'Quanto preciso gastar para começar?',
@@ -173,7 +186,7 @@ export const faq: { q: string; a: string }[] = [
   },
   {
     q: 'Qual a diferença entre os planos?',
-    a: 'O Essencial traz os 30 kits completos (modelos, moldes, listas, passo a passo e exemplos de preço). O Completo traz tudo isso e mais os 3 bônus para começar a vender: mensagens prontas para o WhatsApp, o guia da primeira encomenda e o calendário de vendas.',
+    a: 'O Essencial traz os 40 kits completos (modelos, moldes, listas, passo a passo e exemplos de preço). O Completo traz tudo isso e mais os 3 bônus para começar a vender: mensagens prontas para o WhatsApp, o guia da primeira encomenda e o calendário de vendas.',
   },
   {
     q: 'Posso vender os kits que eu montar?',

@@ -12,7 +12,7 @@ const utmify = process.env.NEXT_PUBLIC_UTMIFY_UTMS !== '0';
 export const metadata: Metadata = {
   metadataBase: new URL(site),
   title: `${marca.produto} · ${marca.nome}`,
-  description: '30 modelos de presentes de Natal com moldes para imprimir, lista de materiais e passo a passo. Monte com produtos prontos e venda neste Natal, mesmo sem saber artesanato.',
+  description: '40 modelos de presentes de Natal com moldes para imprimir, lista de materiais e passo a passo. Monte com produtos prontos e venda neste Natal, mesmo sem saber artesanato.',
   openGraph: {
     title: marca.produto,
     description: 'Monte presentes lindos com produtos prontos e faça uma renda extra neste Natal.',

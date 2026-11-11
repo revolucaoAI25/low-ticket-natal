@@ -2,7 +2,7 @@ import { Plus } from 'lucide-react';
 import { categorias, kits, kitsDestaque } from '@/config/oferta';
 import { Foto } from './Foto';
 
-/** Vitrine: 6 kits com foto (um por categoria) + a lista completa dos 30, que abre no toque. */
+/** Vitrine: 6 kits com foto (um por categoria) + a lista completa dos 40, que abre no toque. */
 export function KitsGrid() {
   const destaque = kitsDestaque.map((n) => kits.find((k) => k.n === n)!).filter(Boolean);
   return (
@@ -10,7 +10,7 @@ export function KitsGrid() {
       <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
         {destaque.map((k) => (
           <article key={k.n} className="card overflow-hidden">
-            <Foto src={k.img} alt={`Foto: ${k.nome} montado`} ratio="1 / 1" sizes="(max-width: 768px) 50vw, 340px" />
+            <Foto src={k.img} alt={`Foto: ${k.nome} montado`} ratio="4 / 5" sizes="(max-width: 768px) 50vw, 340px" />
             <div className="p-3">
               <p className="text-[11px] font-extrabold uppercase tracking-wider text-vermelho">{categorias.find((c) => c.id === k.cat)?.nome}</p>
               <h3 className="mt-0.5 text-[15px] font-extrabold leading-tight text-verde">{k.nome}</h3>
@@ -22,7 +22,7 @@ export function KitsGrid() {
 
       <details className="card group mx-auto mt-5 max-w-[760px]">
         <summary className="flex cursor-pointer items-center justify-between gap-3 p-5 text-[16px] font-extrabold text-verde">
-          Ver a lista dos 30 kits
+          Ver a lista dos 40 kits
           <Plus size={20} className="gira shrink-0 text-vermelho transition-transform" />
         </summary>
         <div className="grid gap-5 px-5 pb-6 md:grid-cols-2">

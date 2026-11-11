@@ -25,9 +25,10 @@ import {
 import { Countdown } from '@/components/Countdown';
 import { Cta } from '@/components/Cta';
 import { Foto } from '@/components/Foto';
+import { HeroCollage } from '@/components/HeroCollage';
 import { KitsGrid } from '@/components/KitsGrid';
 import { StickyBar } from '@/components/StickyBar';
-import { bonus, checkout, faq, fichaExemplo, imagens, marca, planoCompletoExtras, planoEssencial, precos } from '@/config/oferta';
+import { bonus, checkout, faq, fichaExemplo, imagens, marca, mostrarDepoimentos, planoCompletoExtras, planoEssencial, precos } from '@/config/oferta';
 
 const brl = (v: number) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
@@ -75,13 +76,13 @@ export default function Page() {
           <div className="text-center md:text-left">
             <p className="kicker">Renda extra no Natal</p>
             <h1 className="mt-3 text-[34px] font-extrabold leading-[1.06] text-verde md:text-[52px]">
-              30 Kits de Natal para <span className="text-vermelho">Montar e Vender</span>
+              40 Kits de Natal para <span className="text-vermelho">Montar e Vender</span>
             </h1>
             <p className="mt-4 text-[17px] leading-relaxed text-tinta/80 md:text-[19px]">
               Monte presentes natalinos lindos com <b className="text-verde">produtos prontos e baratos</b> e comece a vender ainda neste Natal, <b className="text-verde">mesmo que você nunca tenha feito artesanato</b>.
             </p>
             <div className="mt-6 md:hidden">
-              <Foto src={imagens.heroMockup} alt="Mockup do produto: capa do material e kits de Natal montados" ratio="4 / 3" className="rounded-3xl" priority />
+              <HeroCollage fotos={imagens.hero} />
             </div>
             <ul className="mx-auto mt-6 max-w-[420px] space-y-2.5 text-left text-[15px] font-semibold text-tinta md:mx-0">
               {[
@@ -101,7 +102,7 @@ export default function Page() {
             </ul>
             <div className="mt-7">
               <Cta href={ctaTopo} pulse>
-                Quero meus 30 kits
+                Quero meus 40 kits
               </Cta>
               <p className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[12.5px] font-semibold text-cinza md:justify-start">
                 <span className="inline-flex items-center gap-1">
@@ -117,7 +118,7 @@ export default function Page() {
             </div>
           </div>
           <div className="hidden md:block">
-            <Foto src={imagens.heroMockup} alt="Mockup do produto: capa do material e kits de Natal montados" ratio="1 / 1" className="rounded-[32px]" priority />
+            <HeroCollage fotos={imagens.hero} />
           </div>
         </div>
         <div className="fita" />
@@ -128,7 +129,7 @@ export default function Page() {
         <Secao className="bg-papel">
           <Cabecalho kicker="Por dentro de cada kit" titulo="Cada kit vem com tudo explicado" sub="Foto do presente pronto, o que comprar, os moldes para imprimir e quanto custa montar. Veja um exemplo:" />
           <div className="card mx-auto mt-8 max-w-[860px] overflow-hidden md:grid md:grid-cols-[1fr_1.1fr]">
-            <Foto src={imagens.fichaExemplo} alt={`Foto do ${fichaExemplo.nome} montado`} ratio="4 / 3" className="md:h-full" />
+            <Foto src={imagens.fichaExemplo} alt={`${fichaExemplo.nome} montado`} ratio="4 / 5" className="md:!aspect-auto md:h-full md:min-h-[460px]" />
             <div className="p-5 md:p-7">
               <p className="kicker">{fichaExemplo.kit}</p>
               <h3 className="mt-1 text-[24px] font-extrabold leading-tight text-verde">{fichaExemplo.nome}</h3>
@@ -143,18 +144,18 @@ export default function Page() {
               <div className="mt-5 grid grid-cols-3 gap-2 text-center">
                 <div className="rounded-2xl bg-creme p-3">
                   <p className="text-[11px] font-bold uppercase text-cinza">Custo</p>
-                  <p className="text-[18px] font-extrabold text-verde">{fichaExemplo.custo}</p>
+                  <p className="text-[17px] font-extrabold leading-tight text-verde">{fichaExemplo.custo}</p>
                 </div>
                 <div className="rounded-2xl bg-creme p-3">
                   <p className="text-[11px] font-bold uppercase text-cinza">Montagem</p>
-                  <p className="text-[18px] font-extrabold text-verde">{fichaExemplo.tempo}</p>
+                  <p className="text-[15px] font-extrabold leading-tight text-verde">{fichaExemplo.tempo}</p>
                 </div>
                 <div className="rounded-2xl bg-verde p-3 text-white">
-                  <p className="text-[11px] font-bold uppercase text-white/75">Sugestão</p>
-                  <p className="text-[18px] font-extrabold text-dourado">{fichaExemplo.venda}</p>
+                  <p className="text-[11px] font-bold uppercase text-white/75">Venda</p>
+                  <p className="text-[15px] font-extrabold leading-tight text-dourado">{fichaExemplo.venda}</p>
                 </div>
               </div>
-              <p className="mt-3 text-[12px] leading-snug text-cinza">Valores ilustrativos. Cada ficha mostra como calcular o custo com os preços da sua região.</p>
+              <p className="mt-3 text-[12px] leading-snug text-cinza">Valores de referência do material. Cada ficha mostra como recalcular com os preços da sua região.</p>
             </div>
           </div>
         </Secao>
@@ -193,9 +194,9 @@ export default function Page() {
           <ul className="card mx-auto mt-7 max-w-[720px] divide-y divide-linha">
             {[
               ['Saber fazer artesanato', 'os kits usam produtos prontos, você só monta e embala.'],
-              ['Ter criatividade', 'os 30 modelos já estão criados, com foto de como fica.'],
+              ['Ter criatividade', 'os 40 modelos já estão criados, com foto de como fica.'],
               ['Saber o que comprar', 'cada kit tem a lista de materiais com as quantidades.'],
-              ['Investir muito ou ter estoque', 'comece com 3 ou 4 modelos e venda por encomenda.'],
+              ['Investir muito ou ter estoque', 'comece com 2 ou 3 modelos e venda por encomenda.'],
             ].map(([a, b]) => (
               <li key={a} className="flex gap-3 p-4">
                 <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-vermelho-claro text-vermelho">
@@ -211,7 +212,7 @@ export default function Page() {
 
         {/* ---------- VITRINE ---------- */}
         <Secao id="kits" className="bg-papel">
-          <Cabecalho kicker="Alguns dos 30 kits" titulo="Escolha seus favoritos e comece por eles" sub="Um gostinho do que tem no material: são 30 modelos em 6 categorias." />
+          <Cabecalho kicker="Alguns dos 40 kits" titulo="Escolha seus favoritos e comece por eles" sub="Um gostinho do que tem no material: são 40 modelos em 6 categorias." />
           <div className="mt-8">
             <KitsGrid />
           </div>
@@ -222,7 +223,7 @@ export default function Page() {
           <Cabecalho kicker="O que você recebe" titulo="Tudo pronto para reproduzir, não só ideias" />
           <div className="mt-7 grid grid-cols-2 gap-3 md:grid-cols-3">
             {[
-              [Package, '30 modelos de kits', 'do mimo simples à caixa completa'],
+              [Package, '40 modelos de kits', 'do mimo simples à caixa completa'],
               [Printer, 'Moldes para imprimir', 'tags, cartões, cintas e caixas'],
               [ListChecks, 'Lista de materiais', 'o que comprar e quanto'],
               [Scissors, 'Passo a passo', 'com fotos de cada etapa'],
@@ -269,14 +270,16 @@ export default function Page() {
         </Secao>
 
         {/* ---------- DEPOIMENTOS ---------- */}
-        <Secao>
-          <Cabecalho kicker="Depoimentos" titulo="O que estão dizendo" sub="Mensagens de quem já recebeu o material." />
-          <div className="no-scrollbar -mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0">
-            {imagens.depoimentos.map((d) => (
-              <Foto key={d.legenda} src={d.img} alt={d.legenda} ratio="9 / 16" className="w-[70%] max-w-[300px] shrink-0 snap-center rounded-3xl md:w-auto md:max-w-none" sizes="300px" />
-            ))}
-          </div>
-        </Secao>
+        {mostrarDepoimentos && (
+          <Secao>
+            <Cabecalho kicker="Depoimentos" titulo="O que estão dizendo" sub="Mensagens de quem já montou os primeiros kits." />
+            <div className="no-scrollbar -mx-5 mt-8 flex snap-x snap-mandatory items-start gap-3 overflow-x-auto px-5 pb-3 md:mx-0 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-0">
+              {imagens.depoimentos.map((d) => (
+                <Image key={d.img} src={d.img} alt={d.legenda} width={620} height={1100} sizes="(max-width: 768px) 70vw, 340px" className="h-auto w-[68%] max-w-[300px] shrink-0 snap-center rounded-2xl shadow-card md:w-full md:max-w-none" />
+              ))}
+            </div>
+          </Secao>
+        )}
 
         {/* ---------- PLANOS ---------- */}
         <section id="planos" className="neve bg-verde py-14 md:py-20">
@@ -416,10 +419,10 @@ export default function Page() {
             <h2 className="mx-auto mt-5 max-w-[640px] text-[28px] font-extrabold leading-tight text-white md:text-[38px]">
               Este Natal, transforme presentes simples em <span className="text-dourado">renda extra</span>
             </h2>
-            <p className="mx-auto mt-3 max-w-[560px] text-[16px] text-white/80">30 modelos com moldes, lista de materiais e passo a passo. É só escolher, montar e oferecer.</p>
+            <p className="mx-auto mt-3 max-w-[560px] text-[16px] text-white/80">40 modelos com moldes, lista de materiais e passo a passo. É só escolher, montar e oferecer.</p>
             <div className="mt-7">
               <Cta href="#planos" pulse>
-                Quero meus 30 kits
+                Quero meus 40 kits
               </Cta>
             </div>
             <p className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-semibold text-white/70">
