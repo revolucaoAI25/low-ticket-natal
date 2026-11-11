@@ -78,7 +78,7 @@ export default function Page() {
               30 Kits de Natal para <span className="text-vermelho">Montar e Vender</span>
             </h1>
             <p className="mt-4 text-[17px] leading-relaxed text-tinta/80 md:text-[19px]">
-              Monte presentes de Natal lindos com <b className="text-verde">produtos prontos e baratos</b> (canecas, chocolates, sabonetes) e venda para amigos, família e colegas. Com moldes para imprimir, lista de materiais e passo a passo, <b className="text-verde">mesmo sem saber artesanato</b>.
+              Monte presentes natalinos lindos com <b className="text-verde">produtos prontos e baratos</b> e comece a vender ainda neste Natal, <b className="text-verde">mesmo que você nunca tenha feito artesanato</b>.
             </p>
             <div className="mt-6 md:hidden">
               <Foto src={imagens.heroMockup} alt="Mockup do produto: capa do material e kits de Natal montados" ratio="4 / 3" className="rounded-3xl" priority />
