@@ -17,7 +17,7 @@ export function HeroCollage({ capa, kits, className = '' }: { capa: string; kits
         <div className="livro">
           <div className="livro-paginas" aria-hidden />
           <div className="livro-capa">
-            <Image src={capa} alt="Capa do material 40 Kits de Natal para Montar e Vender" fill priority sizes="(max-width: 768px) 58vw, 290px" className="object-cover" />
+            <Image src={capa} alt="Capa do material 40 Kits de Natal para Montar e Vender" fill priority fetchPriority="high" sizes="(max-width: 640px) 54vw, 290px" className="object-cover" />
             <span className="livro-lombada" aria-hidden />
             <span className="livro-brilho" aria-hidden />
           </div>

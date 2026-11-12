@@ -18,17 +18,55 @@ const str = (o: Obj, ...k: string[]): string => {
 const json = (d: unknown, status = 200) => Response.json(d, { status });
 
 /** Kiwify assina o corpo com HMAC-SHA1 usando o token do webhook (um por produto: separe por vírgula). */
-function assinaturaValida(raw: string, sig: string | null): boolean {
+function assinaturaValida(raw: string, sig: string | null, corpo?: unknown): boolean {
   const tokens = (process.env.KIWIFY_WEBHOOK_TOKEN ?? '').split(/[\s,;]+/).filter(Boolean);
   if (!tokens.length) return true; // sem token configurado, aceita (configure em produção)
   if (!sig) return false;
-  return tokens.some((t) => {
-    const esperado = createHmac('sha1', t).update(raw).digest('hex');
+  // A Kiwify calcula sobre o JSON do pedido; aceita o corpo como chegou ou re-serializado.
+  const textos = [raw, corpo === undefined ? '' : JSON.stringify(corpo)].filter(Boolean);
+  return tokens.some((t) =>
+    textos.some((txt) => {
+      const esperado = createHmac('sha1', t).update(txt).digest('hex');
+      try {
+        return timingSafeEqual(Buffer.from(esperado), Buffer.from(sig.toLowerCase()));
+      } catch {
+        return false;
+      }
+    }),
+  );
+}
+
+/**
+ * Diagnóstico: abra https://SEU-DOMINIO/api/webhooks/kiwify no navegador.
+ * Mostra só se cada configuração existe (nunca os valores) e se o domínio do remetente está verificado no Resend.
+ */
+export async function GET() {
+  const from = process.env.EMAIL_FROM || '';
+  const dominio = (from.match(/@([^>\s]+)/)?.[1] || '').toLowerCase();
+  let resendDominio: string = 'não deu para conferir';
+  const key = process.env.RESEND_API_KEY;
+  if (key && dominio) {
     try {
-      return timingSafeEqual(Buffer.from(esperado), Buffer.from(sig));
+      const r = await fetch('https://api.resend.com/domains', { headers: { authorization: `Bearer ${key}` } });
+      if (r.status === 401 || r.status === 403) resendDominio = 'a chave do Resend é só de envio (normal); confira em resend.com/domains se o domínio está "Verified"';
+      else if (r.ok) {
+        const d = (await r.json()) as { data?: { name: string; status: string }[] };
+        const achou = d.data?.find((x) => x.name.toLowerCase() === dominio);
+        resendDominio = achou ? `domínio ${dominio}: ${achou.status}` : `domínio ${dominio} NÃO está cadastrado no Resend`;
+      } else resendDominio = `Resend respondeu ${r.status}`;
     } catch {
-      return false;
+      /* ignore */
     }
+  }
+  return json({
+    webhook: 'ok, esta rota está no ar',
+    KIWIFY_WEBHOOK_TOKEN: (process.env.KIWIFY_WEBHOOK_TOKEN ?? '').split(/[\s,;]+/).filter(Boolean).length + ' token(s)',
+    RESEND_API_KEY: !!key,
+    EMAIL_FROM: from ? `preenchido (domínio: ${dominio || 'não reconhecido'})` : false,
+    resend: resendDominio,
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || false,
+    NEXT_PUBLIC_SUPORTE_EMAIL: process.env.NEXT_PUBLIC_SUPORTE_EMAIL ? (/^[^\s<>"',;]+@[^\s<>"',;]+\.[a-z]{2,}$/i.test(process.env.NEXT_PUBLIC_SUPORTE_EMAIL.trim()) ? 'ok' : 'fora do formato (o e-mail de resposta é ignorado até corrigir)') : 'vazio',
+    UTMIFY_API_TOKEN: !!process.env.UTMIFY_API_TOKEN,
   });
 }
 
@@ -47,8 +85,8 @@ export async function POST(req: Request) {
     console.warn('[kiwify] corpo inválido');
     return json({ error: 'json' }, 400);
   }
-  if (!assinaturaValida(raw, new URL(req.url).searchParams.get('signature'))) {
-    console.warn('[kiwify] recusado: token não confere (confira KIWIFY_WEBHOOK_TOKEN)');
+  if (!assinaturaValida(raw, new URL(req.url).searchParams.get('signature'), body)) {
+    console.warn('[kiwify] recusado: token não confere (confira KIWIFY_WEBHOOK_TOKEN)', { temAssinatura: !!new URL(req.url).searchParams.get('signature') });
     return json({ error: 'signature' }, 401);
   }
   const o: Obj = body.order && typeof body.order === 'object' ? (body.order as Obj) : body;
@@ -61,6 +99,7 @@ export async function POST(req: Request) {
   const evento = str(o, 'webhook_event_type', 'event').toLowerCase();
   const nomeProduto = str(prod, 'product_name', 'name') || str(o, 'product_name');
   const idProduto = str(prod, 'product_id', 'id');
+  console.log('[kiwify] recebido', { evento, status, nomeProduto, pedido });
 
   // Botão "Testar" da Kiwify: cliente fictício. Só confirma que chegou.
   if (/@example\.(com|org|net)$/.test(email)) {

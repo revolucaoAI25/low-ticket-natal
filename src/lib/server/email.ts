@@ -7,7 +7,7 @@ export const linkAbsoluto = (u: string) => (u.startsWith('/') ? `${site()}${u}` 
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
 
 function layout(titulo: string, corpo: string): string {
-  const suporte = process.env.NEXT_PUBLIC_SUPORTE_EMAIL || '';
+  const suporte = soEmail(process.env.NEXT_PUBLIC_SUPORTE_EMAIL);
   return `<!doctype html><html><body style="margin:0;background:#F9F5E8;font-family:Arial,Helvetica,sans-serif;color:#1E2B25">
   <table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:28px 14px">
   <table width="100%" style="max-width:540px;background:#FFFDF8;border-radius:22px;overflow:hidden;border:1px solid #E6DDC6" cellpadding="0" cellspacing="0">
@@ -28,15 +28,29 @@ const botao = (href: string, rotulo: string) =>
  * Envia pela Resend. A chave de idempotência (pedido + produto) impede e-mail repetido
  * quando a Kiwify manda o mesmo aviso mais de uma vez.
  */
+/** Tira só o endereço de um texto (aceita espaços, aspas ou "Nome <email>"). */
+const soEmail = (v: string | undefined) => (v || '').match(/[^\s<>"',;]+@[^\s<>"',;]+\.[a-z]{2,}/i)?.[0] || '';
+
+/** Remetente: aceita "email" ou "Nome <email>". Só o e-mail vira "Kits pra Vender <email>" (nome que aparece na caixa de entrada). */
+function remetente(): string {
+  const v = (process.env.EMAIL_FROM || '').trim().replace(/^["']|["']$/g, '');
+  const email = soEmail(v);
+  if (!email) return '';
+  const nome = v.includes('<') ? v.slice(0, v.indexOf('<')).trim().replace(/^["']|["']$/g, '') : '';
+  return `${nome || 'Kits pra Vender'} <${email}>`;
+}
+
 async function enviar(para: string, assunto: string, html: string, idempotencia: string): Promise<{ ok: boolean; erro?: string }> {
-  const key = process.env.RESEND_API_KEY;
-  const from = process.env.EMAIL_FROM;
-  if (!key || !from) return { ok: false, erro: 'RESEND_API_KEY ou EMAIL_FROM não configurados' };
+  const key = process.env.RESEND_API_KEY?.trim();
+  const from = remetente();
+  if (!key || !from) return { ok: false, erro: 'RESEND_API_KEY ou EMAIL_FROM não configurados (ou EMAIL_FROM sem um e-mail válido)' };
+  // Responder para: o e-mail de suporte, só se for um endereço válido (um valor fora do formato fazia o Resend recusar o envio).
+  const replyTo = soEmail(process.env.NEXT_PUBLIC_SUPORTE_EMAIL) || undefined;
   try {
     const r = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json', 'Idempotency-Key': idempotencia.slice(0, 256) },
-      body: JSON.stringify({ from, to: para, subject: assunto, html, reply_to: process.env.NEXT_PUBLIC_SUPORTE_EMAIL || undefined }),
+      body: JSON.stringify({ from, to: para, subject: assunto, html, reply_to: replyTo }),
     });
     if (!r.ok) {
       const t = await r.text();
