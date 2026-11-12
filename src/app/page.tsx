@@ -461,8 +461,8 @@ export default function Page() {
             <MessageCircle size={14} /> Suporte: {marca.suporte}
           </p>
           <p className="mt-3 flex justify-center gap-4">
-            <a href="/termos" className="underline">Termos de uso</a>
-            <a href="/privacidade" className="underline">Política de privacidade</a>
+            <a href="/termos" className="inline-block py-2 underline">Termos de uso</a>
+            <a href="/privacidade" className="inline-block py-2 underline">Política de privacidade</a>
           </p>
         </div>
       </footer>

@@ -19,7 +19,7 @@ body { background: var(--creme); color: #1e2b25; -webkit-font-smoothing: antiali
   .sub { @apply mt-3 text-[16px] leading-relaxed text-cinza md:text-[18px]; }
   .card { @apply rounded-3xl border border-linha bg-papel shadow-card; }
   .btn {
-    @apply inline-flex min-h-[58px] w-full items-center justify-center gap-2 rounded-2xl px-6 text-center text-[16px] font-extrabold uppercase tracking-wide transition active:translate-y-[2px] md:w-auto md:min-w-[340px];
+    @apply inline-flex min-h-[58px] w-full items-center justify-center gap-2 rounded-2xl px-6 text-center text-[16px] max-[359px]:px-4 max-[359px]:text-[14.5px] font-extrabold uppercase tracking-wide transition active:translate-y-[2px] md:w-auto md:min-w-[340px];
   }
   .btn-vermelho { @apply btn bg-vermelho text-white shadow-cta hover:bg-vermelho-escuro active:shadow-none; }
   .btn-verde { @apply btn bg-verde text-white shadow-cta-verde hover:bg-verde-escuro active:shadow-none; }
