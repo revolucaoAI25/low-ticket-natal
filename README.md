@@ -51,6 +51,6 @@ Crie na Kiwify um checkout do Plano Completo por R$ 19,90 e cole o link em `NEXT
 - O nome do produto na Kiwify define o que é enviado: precisa conter "Completo", "Essencial", "Catálogo", "Planilha" ou "Artesanato". Também dá para usar o ID do produto em `kiwifyIds`, no arquivo `src/config/entrega.ts`.
 - Plano Completo: um e-mail com o material, os 3 bônus e o complementar. Plano Essencial: um e-mail só com o material. Cada order bump vai num e-mail separado.
 - Os links dos arquivos ficam em `src/config/entrega.ts`.
-- Os pedidos de order bump também são enviados para a Utmify pela API (`UTMIFY_API_TOKEN`).
+- Os pedidos de order bump também são enviados para a Utmify pela API (`UTMIFY_API_TOKEN`) e para a Meta pela API de Conversões (`META_CAPI_TOKEN`), igual ao ID Pet.
 - Página de obrigado: `/obrigado`. Configure como página de agradecimento na Kiwify.
 - Os logs aparecem na Vercel com o prefixo `[kiwify]`.
