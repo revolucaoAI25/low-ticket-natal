@@ -23,8 +23,8 @@ export interface Produto {
   arquivos: Arquivo[];
 }
 
-// Plano Essencial: só o PDF dos 40 kits.
-const PDF_PRINCIPAL: Arquivo = { nome: 'Abrir os 40 Kits de Natal (PDF)', url: 'https://drive.google.com/file/d/1zWSJnNoj1oGSAyoD4y7S9s1bDAv7GNOg/view?usp=sharing' };
+// Plano Essencial: só o PDF dos 40 kits (cópia fora da pasta dos bônus).
+const PDF_PRINCIPAL: Arquivo = { nome: 'Abrir os 40 Kits de Natal (PDF)', url: 'https://drive.google.com/file/d/1BL6OvhFR3ODe80JAlcbRrb1EW2X7BVKI/view?usp=sharing' };
 // Plano Completo: a pasta do Drive com o PDF, os 3 bônus e as mensagens para copiar e colar.
 const PASTA_COMPLETA: Arquivo = { nome: 'Abrir a pasta com os 40 kits e os 3 bônus', url: 'https://drive.google.com/drive/folders/1D-HQlAMIiOZjPDFaEo4yzIujPTRKkq1y?usp=sharing' };
 
@@ -48,10 +48,10 @@ export const produtos: Produto[] = [
   },
   {
     id: 'artesanatos',
-    titulo: 'Artesanatos Natalinos para Fazer e Vender',
+    titulo: '30 Artesanatos Natalinos para Fazer e Vender',
     palavras: ['artesanato'],
     tipo: 'bump',
-    arquivos: [{ nome: 'Abrir os Artesanatos Natalinos (PDF)', url: '' }],
+    arquivos: [{ nome: 'Abrir os 30 Artesanatos Natalinos (PDF)', url: 'https://drive.google.com/file/d/1b3Yah1HTWUYpH5cmImcqfmskQDJkZB8s/view?usp=sharing' }],
   },
 ];
 
