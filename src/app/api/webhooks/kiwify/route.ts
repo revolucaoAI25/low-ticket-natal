@@ -2,7 +2,6 @@ import { createHmac, timingSafeEqual } from 'crypto';
 import { bumpsNoPedido, produtoDoPedido, type Produto } from '@/config/entrega';
 import { enviarEntrega } from '@/lib/server/email';
 import { sendUtmifyOrder } from '@/lib/server/utmify';
-import { sendCapiPurchase } from '@/lib/server/meta-capi';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -119,21 +118,7 @@ export async function POST(req: Request) {
     const r = await enviarEntrega({ para: email, nome, titulo: p.titulo, arquivos: p.arquivos, principal: p.tipo === 'principal', chave: `kiwify-${pedido}-${p.id}` });
     enviados[p.id] = r.ok || r.erro || false;
   }
-  // Order bump em pedido à parte: a Utmify só recebe a venda principal pelo webhook dela,
-  // então o bump vai para a Utmify (relatórios) e para a Meta (API de Conversões) daqui. Igual ao ID Pet.
   const ut = produto.tipo === 'bump' ? await utmify('paid') : undefined;
-  const capi =
-    produto.tipo === 'bump'
-      ? await sendCapiPurchase({
-          orderId: pedido,
-          value: centavos / 100,
-          contentName: nomeProduto || produto.titulo,
-          email,
-          phone: str(cliente, 'mobile', 'phone'),
-          ip: str(cliente, 'ip') || null,
-          fbclid: (utms.fbclid as string) || null,
-        })
-      : undefined;
-  console.log('[kiwify] compra', { pedido, nomeProduto, produto: produto.id, enviados, utmify: ut, capi });
-  return json({ ok: true, produto: produto.id, enviados, utmify: ut, capi });
+  console.log('[kiwify] compra', { pedido, nomeProduto, produto: produto.id, enviados, utmify: ut });
+  return json({ ok: true, produto: produto.id, enviados, utmify: ut });
 }
