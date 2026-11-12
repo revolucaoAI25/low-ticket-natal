@@ -47,9 +47,9 @@ Crie na Kiwify um checkout do Plano Completo por R$ 19,90 e cole o link em `NEXT
 - A **compra** chega na Meta pela Utmify (integração Kiwify → Utmify). Não coloque Pixel na Kiwify, senão a compra conta duas vezes.
 
 **Entrega (`/api/webhooks/kiwify`)**
-- Na Kiwify, cada produto (Essencial, Completo, Catálogo, Calculadora, Artesanatos) recebe um webhook para `https://SEU-DOMINIO/api/webhooks/kiwify`, com os eventos Compra aprovada, Reembolso e Chargeback. Coloque os tokens em `KIWIFY_WEBHOOK_TOKEN`, separados por vírgula.
-- O nome do produto na Kiwify define o que é enviado: precisa conter "Completo", "Essencial", "Catálogo", "Calculadora" (ou "Planilha") ou "Artesanato". Também dá para usar o ID do produto em `kiwifyIds`, no arquivo `src/config/entrega.ts`.
-- Plano Completo: um e-mail com o material, os 3 bônus e o complementar. Plano Essencial: um e-mail só com o material. Cada order bump vai num e-mail separado.
+- Na Kiwify, cada produto (40 Kits de Natal, Catálogo, Calculadora, Artesanatos) recebe um webhook para `https://SEU-DOMINIO/api/webhooks/kiwify`, com os eventos Compra aprovada, Reembolso e Chargeback. Coloque os tokens em `KIWIFY_WEBHOOK_TOKEN`, separados por vírgula.
+- O nome do produto na Kiwify define o que é enviado: precisa conter "40 Kits", "Catálogo", "Calculadora" (ou "Planilha") ou "Artesanato". Os checkouts Essencial, Completo e o do pop-up são ofertas do mesmo produto, e todos recebem a pasta com os bônus. Também dá para usar o ID do produto em `kiwifyIds`, no arquivo `src/config/entrega.ts`.
+- Qualquer plano: um e-mail com a pasta (material + 3 bônus). Cada order bump vai num e-mail separado.
 - Os links dos arquivos ficam em `src/config/entrega.ts`.
 - Os pedidos de order bump também são enviados para a Utmify pela API (`UTMIFY_API_TOKEN`).
 - Página de obrigado: `/obrigado`. Configure como página de agradecimento na Kiwify.

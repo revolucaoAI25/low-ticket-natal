@@ -23,21 +23,20 @@ export interface Produto {
   arquivos: Arquivo[];
 }
 
-// Plano Essencial: só o PDF dos 40 kits (cópia fora da pasta dos bônus).
-const PDF_PRINCIPAL: Arquivo = { nome: 'Abrir os 40 Kits de Natal (PDF)', url: 'https://drive.google.com/file/d/1BL6OvhFR3ODe80JAlcbRrb1EW2X7BVKI/view?usp=sharing' };
-// Plano Completo: a pasta do Drive com o PDF, os 3 bônus e as mensagens para copiar e colar.
-const PASTA_COMPLETA: Arquivo = { nome: 'Abrir a pasta com os 40 kits e os 3 bônus', url: 'https://drive.google.com/drive/folders/1D-HQlAMIiOZjPDFaEo4yzIujPTRKkq1y?usp=sharing' };
+// Produto principal (os dois checkouts, Essencial e Completo, são o mesmo produto na Kiwify):
+// todo mundo recebe a pasta com o PDF dos 40 kits, os 3 bônus e as mensagens para copiar e colar.
+const PASTA: Arquivo = { nome: 'Abrir a pasta com os 40 kits e os 3 bônus', url: 'https://drive.google.com/drive/folders/1D-HQlAMIiOZjPDFaEo4yzIujPTRKkq1y?usp=sharing' };
 
+// Nomes na Kiwify: "40 Kits de Natal para Montar e Vender", "Catálogo Natalino Pronto para Vender — Editável no Canva",
+// "Calculadora Automática de Preços e Encomendas" e "30 Artesanatos Natalinos para Fazer e Vender".
 export const produtos: Produto[] = [
-  // A ordem importa: "completo" é testado antes de "essencial".
-  { id: 'completo', titulo: 'Plano Completo', palavras: ['completo'], tipo: 'principal', arquivos: [PASTA_COMPLETA] },
-  { id: 'essencial', titulo: 'Plano Essencial', palavras: ['essencial', '40 kits', 'kits de natal'], tipo: 'principal', arquivos: [PDF_PRINCIPAL] },
+  { id: 'kits', titulo: '40 Kits de Natal para Montar e Vender', palavras: ['40 kits', 'kits de natal'], tipo: 'principal', arquivos: [PASTA] },
   {
     id: 'catalogo',
     titulo: 'Catálogo Natalino Pronto para Vender',
     palavras: ['catalogo'],
     tipo: 'bump',
-    arquivos: [{ nome: 'Baixar o Catálogo Natalino (PowerPoint editável)', url: '/arquivos/0d4c56dd23a12bc5/Catalogo-Natalino-40-Kits-Editavel.pptx' }],
+    arquivos: [{ nome: 'Baixar o Catálogo Natalino (editável no Canva ou no PowerPoint)', url: '/arquivos/0d4c56dd23a12bc5/Catalogo-Natalino-40-Kits-Editavel.pptx' }],
   },
   {
     id: 'planilha',
