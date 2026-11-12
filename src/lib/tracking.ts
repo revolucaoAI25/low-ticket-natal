@@ -46,7 +46,9 @@ export function checkoutUrl(base: string): string {
   }
 }
 
+/** Evento no Pixel da Meta. Com o Pixel da Utmify ligado não faz nada: a Utmify detecta o clique e manda o evento com deduplicação. */
 export function track(event: string, params: Record<string, unknown> = {}) {
+  if (process.env.NEXT_PUBLIC_UTMIFY_PIXEL_ID) return;
   try {
     window.fbq?.('track', event, params);
   } catch {

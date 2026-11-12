@@ -40,7 +40,9 @@ Crie na Kiwify um checkout do Plano Completo por R$ 19,90 e cole o link em `NEXT
 ## Pixel, Utmify e entrega automática
 
 **Rastreamento (igual ao ID Pet)**
-- Pixel da Meta direto na página (`NEXT_PUBLIC_META_PIXEL_ID`): PageView ao abrir e InitiateCheckout no clique do botão.
+- Pixel pela Utmify (`NEXT_PUBLIC_UTMIFY_PIXEL_ID`): ela dispara PageView, InitiateCheckout e Purchase no Pixel da Meta, com API de Conversões e deduplicação. Com ele preenchido, o código não carrega o Pixel da Meta por conta própria (evita contar em dobro).
+- Na Utmify, Regra de Initiate Checkout: "Contém texto" com `Quero o Plano Completo`, `Quero o Essencial` e `Quero o Completo`, e detecção automática desligada. Purchase: apenas vendas aprovadas, valor da venda, Produto = só os produtos do Natal.
+- `NEXT_PUBLIC_META_PIXEL_ID` fica como alternativa, se um dia não usar o Pixel da Utmify.
 - Script de UTMs da Utmify: as UTMs vão junto no link do checkout.
 - A **compra** chega na Meta pela Utmify (integração Kiwify → Utmify). Não coloque Pixel na Kiwify, senão a compra conta duas vezes.
 

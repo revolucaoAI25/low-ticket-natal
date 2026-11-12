@@ -6,9 +6,10 @@ import { montserrat } from './fonts';
 import './globals.css';
 
 const site = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-const pixelId = (process.env.NEXT_PUBLIC_META_PIXEL_ID || '').replace(/\D/g, '');
 const utmify = process.env.NEXT_PUBLIC_UTMIFY_UTMS !== '0';
 const utmifyPixel = (process.env.NEXT_PUBLIC_UTMIFY_PIXEL_ID || '').replace(/[^a-zA-Z0-9]/g, '');
+// Com o Pixel da Utmify ligado, ela dispara o Pixel da Meta (com deduplicação). Carregar o da Meta também duplicaria os eventos.
+const pixelId = utmifyPixel ? '' : (process.env.NEXT_PUBLIC_META_PIXEL_ID || '').replace(/\D/g, '');
 
 export const metadata: Metadata = {
   metadataBase: new URL(site),
