@@ -23,21 +23,36 @@ export interface Produto {
   arquivos: Arquivo[];
 }
 
-const PRINCIPAL: Arquivo = { nome: '40 Kits de Natal para Montar e Vender (PDF)', url: '' };
-const BONUS: Arquivo[] = [
-  { nome: 'Bônus 1: WhatsApp Vendedor, 30 Mensagens Prontas', url: '' },
-  { nome: 'Bônus 2: Primeira Encomenda, Guia de 7 Passos', url: '' },
-  { nome: 'Bônus 3: Calendário de Vendas Natalinas', url: '' },
-  { nome: 'Material complementar dos bônus', url: '' },
-];
+// Plano Essencial: só o PDF dos 40 kits.
+const PDF_PRINCIPAL: Arquivo = { nome: 'Abrir os 40 Kits de Natal (PDF)', url: 'https://drive.google.com/file/d/1zWSJnNoj1oGSAyoD4y7S9s1bDAv7GNOg/view?usp=sharing' };
+// Plano Completo: a pasta do Drive com o PDF, os 3 bônus e as mensagens para copiar e colar.
+const PASTA_COMPLETA: Arquivo = { nome: 'Abrir a pasta com os 40 kits e os 3 bônus', url: 'https://drive.google.com/drive/folders/1D-HQlAMIiOZjPDFaEo4yzIujPTRKkq1y?usp=sharing' };
 
 export const produtos: Produto[] = [
   // A ordem importa: "completo" é testado antes de "essencial".
-  { id: 'completo', titulo: 'Plano Completo', palavras: ['completo'], tipo: 'principal', arquivos: [PRINCIPAL, ...BONUS] },
-  { id: 'essencial', titulo: 'Plano Essencial', palavras: ['essencial', '40 kits', 'kits de natal'], tipo: 'principal', arquivos: [PRINCIPAL] },
-  { id: 'catalogo', titulo: 'Catálogo Natalino Pronto para Vender', palavras: ['catalogo'], tipo: 'bump', arquivos: [{ nome: 'Catálogo Natalino Pronto para Vender', url: '' }] },
-  { id: 'planilha', titulo: 'Planilha Inteligente de Lucro e Encomendas', palavras: ['planilha'], tipo: 'bump', arquivos: [{ nome: 'Planilha Inteligente de Lucro e Encomendas', url: '' }] },
-  { id: 'artesanatos', titulo: '40 Artesanatos Natalinos para Fazer e Vender', palavras: ['artesanato'], tipo: 'bump', arquivos: [{ nome: '40 Artesanatos Natalinos para Fazer e Vender (PDF)', url: '' }] },
+  { id: 'completo', titulo: 'Plano Completo', palavras: ['completo'], tipo: 'principal', arquivos: [PASTA_COMPLETA] },
+  { id: 'essencial', titulo: 'Plano Essencial', palavras: ['essencial', '40 kits', 'kits de natal'], tipo: 'principal', arquivos: [PDF_PRINCIPAL] },
+  {
+    id: 'catalogo',
+    titulo: 'Catálogo Natalino Pronto para Vender',
+    palavras: ['catalogo'],
+    tipo: 'bump',
+    arquivos: [{ nome: 'Baixar o Catálogo Natalino (PowerPoint editável)', url: '/arquivos/0d4c56dd23a12bc5/Catalogo-Natalino-40-Kits-Editavel.pptx' }],
+  },
+  {
+    id: 'planilha',
+    titulo: 'Calculadora de Lucro e Encomendas',
+    palavras: ['planilha', 'calculadora'],
+    tipo: 'bump',
+    arquivos: [{ nome: 'Abrir a Calculadora de Lucro', url: 'https://claude.ai/artifact/6TwtJVR4vEL1orHsUar2e1#calcular' }],
+  },
+  {
+    id: 'artesanatos',
+    titulo: 'Artesanatos Natalinos para Fazer e Vender',
+    palavras: ['artesanato'],
+    tipo: 'bump',
+    arquivos: [{ nome: 'Abrir os Artesanatos Natalinos (PDF)', url: '' }],
+  },
 ];
 
 export const normalizar = (s: string) =>
